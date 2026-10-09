@@ -94,7 +94,7 @@ class Remote:
     def guard(self):
         q = shlex.quote
         return ('[ -d ' + q(self.work) + ' ] && [ ! -L ' + q(self.work) + ' ] && [ ! -L ' + q(self.work + '/owner.txt') +
-                ' ] && [ "$(cat ' + q(self.work + '/owner.txt') + ')" = ' + q(self.owner) + '; ')
+                ' ] && [ "$(cat ' + q(self.work + '/owner.txt') + ')" = ' + q(self.owner) + ' ] || exit 43; ')
 
     def snapshot(self, label):
         cmd = "printf 'MEMAVAILABLE '; awk '/^MemAvailable:/ {print $2}' /proc/meminfo; printf 'TMP_AVAILABLE '; df -Pk /tmp | awk 'NR==2 {print $4}'; "

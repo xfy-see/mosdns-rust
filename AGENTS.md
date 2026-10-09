@@ -10,13 +10,15 @@
 - full 与 minimal 分别测试。minimal 必须关闭默认 feature，不能以 feature 合并的测试 CLI 代替独立生产 binary；权限/平台限制逐项记录。
 - 保留 GPL 许可证和原版权声明。固定 TLS 私钥不得提交，即便被标为 mock/public fixture；真实设备凭据也不得用作测试输入。TLS 测试证书/key 仅在 GitHub Actions 临时生成，保持 Rust include 路径不变，不通过修改 .rs 来内联旧固定 key。
 - 六个生成路径由 .gitignore 精确排除，不进入 Git index 或公开提交历史。两个私钥文件不得进入 runtime-source 或下载 artifact；四个公开测试证书可用于运行测试，但必须在 `generated_test_inputs` 中单独绑定。harness 可以内嵌本轮一次性的 localhost mock 素材，不能复用旧固定私钥。
-- `ci/generate-test-fixtures.py` 只允许 `GITHUB_ACTIONS=true` 的 CI 生成，保持 .rs 原 SHA。`generated_test_inputs` 记录生成方法/路径、大小与 SHA；生成输入不混入 Git 跟踪源码树。两个明文私钥文件、CA 私钥与私钥内容不写入 artifact、日志或报告，编译后清理；不得导入系统 CA store。
+- `ci/generate-test-fixtures.py` 只允许 `GITHUB_ACTIONS=true` 的 CI 生成，证书生成过程不得修改 .rs。`generated_test_inputs` 记录生成方法/路径、大小与 SHA；生成输入不混入 Git 跟踪源码树。私钥不得作为独立 DER/PEM 文件或日志内容进入 artifact、日志或报告；仅本轮一次性 localhost mock 素材可内嵌 test harness。生成的私钥文件在编译后清理，不得导入系统 CA store。
 
 ## 本地操作与 GitHub 编译
 
 - 本地 Rust 编译环境已经清理。不得默认安装 rustup/Cargo/target/依赖，也不得在本地执行 Cargo build/test/fmt/clippy；这些在 GitHub Actions 执行。用户另行明确要求本地编译时再调整。
 - 本地可以进行文件审查、`git diff --check`、配置/JSON/YAML 检查、Python 脚本检查，以及运行已经下载并校验的 CLI/test harness；不要为静态检查恢复 Rust 环境。
 - 提交前只 stage 本任务源码、测试、文档和 CI。检查暂存 diff 与敏感文件；push 后记录完整 commit SHA、workflow/run ID、状态与结论。
+- 终端 Git 缺少写入认证时可使用用户已授权的 GitHub connector 发布审核后的本地 tree；以远端实际完整 commit SHA 为准，再取得该 SHA 的独立干净 checkout。保留原开发 checkout，不将未提交文件或不同的本地 commit 作为 `--source-root`。
+- 本地辅助工具选择已有 Python 3.10+ 并检查版本，统一使用明确的解释器路径；不为此默认安装 Python 或恢复 Rust 环境。
 - 本仓库 `.github/workflows/build.yml` 定义编译矩阵。Rust 工具链与构建依赖只能在 CI 中安装；依赖采用 Cargo.lock 与 `--locked`。正式 CLI 与测试 harness 分开构建、分别记录来源。
 - GitHub workflow 失败需保留失败日志并修复后提交新 commit；不能下载其它 commit 的成功产物冒充当前提交。不得 force push 或改写历史来隐藏失败记录。
 

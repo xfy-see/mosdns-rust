@@ -498,6 +498,7 @@ async fn observed_doh_http1_and_http2_reuse_one_connection_until_explicit_close(
         let observer = Arc::new(Observer::default());
         let mut opts = options(&observer);
         opts.insecure_skip_verify = true;
+        opts.dial_addr = address.to_string();
         let upstream = Upstream::new_with_options(
             &format!("https://localhost:{}/dns-query", address.port()),
             Duration::from_secs(1),

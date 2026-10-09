@@ -340,22 +340,29 @@ async fn cancelling_all_handshake_waiters_releases_every_lazy_connection() {
             peer.unwrap();
         }
     });
-    let transport = Arc::new(Transport::with_tls_config(
-        "localhost".into(),
-        address.port(),
-        tls_client_config(),
-        true,
-    ));
+    let transport = Arc::new(
+        Transport::with_tls_config(
+            "localhost".into(),
+            address.port(),
+            tls_client_config(),
+            true,
+        )
+        .with_test_dial_addr(address),
+    );
     let mut queries = tokio::task::JoinSet::new();
     for id in 0..65 {
         let transport = transport.clone();
         queries.spawn(async move { transport.exchange(&query(id)).await });
     }
-    for _ in 0..2 {
-        tokio::time::timeout(Duration::from_secs(1), hellos.recv())
-            .await
-            .unwrap()
-            .unwrap();
+    for waiter in 0..2 {
+        match tokio::time::timeout(Duration::from_secs(1), hellos.recv()).await {
+            Ok(Some(())) => {}
+            result => panic!(
+                "mock {address} did not receive TLS ClientHello {waiter}: {result:?}; first finished query={:?}; server_finished={}",
+                queries.try_join_next(),
+                server.is_finished()
+            ),
+        }
     }
     assert_eq!(transport.pool.slots.lock().unwrap().len(), 2);
     queries.abort_all();
@@ -363,7 +370,7 @@ async fn cancelling_all_handshake_waiters_releases_every_lazy_connection() {
     assert!(transport.pool.slots.lock().unwrap().is_empty());
     tokio::time::timeout(Duration::from_secs(1), server)
         .await
-        .unwrap()
+        .expect("mock TLS sockets remain open after every waiter was cancelled")
         .unwrap();
 }
 
@@ -386,25 +393,35 @@ async fn stalled_tls_dial_is_limited_to_five_seconds_with_a_long_overall_timeout
             address.port(),
             tls_client_config(),
             true,
-        ),
+        )
+        .with_test_dial_addr(address),
         Duration::from_secs(30),
     );
     let client = upstream.clone();
+    let started = tokio::time::Instant::now();
     let task = tokio::spawn(async move { client.exchange(&query(1)).await });
-    received.await.unwrap();
+    received
+        .await
+        .expect("mock must receive a TLS ClientHello before virtual time starts");
+    let hello_delay = started.elapsed();
     tokio::time::pause();
     tokio::time::advance(Duration::from_secs(4)).await;
     for _ in 0..4 {
         tokio::task::yield_now().await;
     }
-    assert!(!task.is_finished());
+    if task.is_finished() {
+        let result = task.await.unwrap();
+        panic!(
+            "TLS dial finished before its five-second deadline: {result:?}; initial ClientHello delay={hello_delay:?}"
+        );
+    }
     tokio::time::advance(Duration::from_secs(1) + Duration::from_millis(1)).await;
     for _ in 0..16 {
         tokio::task::yield_now().await;
     }
     assert!(
         task.is_finished(),
-        "lazy TLS dial must fail by five seconds"
+        "lazy TLS dial must fail by five seconds; initial ClientHello delay={hello_delay:?}"
     );
     let error = task.await.unwrap().unwrap_err();
     assert!(error.to_string().contains("dial timeout"), "{error:#}");

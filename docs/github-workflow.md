@@ -13,14 +13,33 @@ git diff
 git diff --cached
 ```
 
-Python/JSON/YAML 和 shell 辅助工具可在本地做静态检查；Rust fmt、Clippy、编译与 Cargo 测试都交给 CI。提交本任务文件后 push 到本仓库当前分支，记录完整 commit：
+Python/JSON/YAML 和 shell 辅助工具可在本地做静态检查；Rust fmt、Clippy、编译与 Cargo 测试都交给 CI。终端 Git 已配置可用认证时，提交本任务文件后 push 到本仓库当前分支，记录完整 commit：
 
 ```sh
 git push origin HEAD
 commit=$(git rev-parse HEAD)
+source_root="$PWD"
 ```
 
-需要运行校验的 commit 应是已 push 的干净 checkout；未提交的改动不能当作该构建的来源。
+终端 Git 缺少认证时，可用用户已授权的 GitHub connector 发布审核后的本地源码 tree，不把 token 或私钥写进仓库。连接器返回的远端 commit SHA 可能与本地 commit 不同，必须以实际远端完整 SHA 为准；不能用本地 SHA 代替。保留原开发 checkout 的提交与修改，为远端 commit 创建新的干净 checkout 后再验证，例如：
+
+```sh
+published_commit=REMOTE_FULL_COMMIT_SHA
+git fetch origin "$published_commit"
+git worktree add --detach /absolute/new-clean-checkout "$published_commit"
+cd /absolute/new-clean-checkout
+commit=$(git rev-parse HEAD)
+source_root="$PWD"
+```
+
+`REMOTE_FULL_COMMIT_SHA` 替换为连接器实际返回的完整 SHA；公开仓库的 fetch 不需要恢复写入凭据。新的 checkout 仅用于下载与验证，后续开发仍在原开发 checkout。需要运行校验的 commit 必须已发布且源码与该 SHA 一致；未提交的改动不能当作该构建的来源。
+
+下载校验和设备控制器使用已有 Python 3.10+。先选择现有解释器并检查版本，后续命令统一使用它；不安装 Rust 或 Python，也不依赖 macOS 默认 `python3` 的版本：
+
+```sh
+PYTHON=/absolute/path/to/existing/python3
+"$PYTHON" -B -c 'import sys; assert sys.version_info >= (3, 10), "Python 3.10+ required"; print(sys.executable, sys.version)'
+```
 
 ## 2. 等待同一 commit 的 GitHub run
 
@@ -65,11 +84,11 @@ gh run download "$run_id" --repo xfy-see/mosdns-rust \
   --name "mosdns-rs-aarch64-apple-darwin-full-$commit" \
   --dir /absolute/new-download/native-full
 
-python3 -B ci/download-and-test.py \
+"$PYTHON" -B ci/download-and-test.py \
   --artifact /absolute/new-download/native-full \
   --expected-commit "$commit" \
   --expected-target aarch64-apple-darwin --expected-profile full \
-  --source-root "$PWD" \
+  --source-root "$source_root" \
   --output /absolute/new-results/native-full
 ```
 
@@ -90,11 +109,11 @@ gh run download "$run_id" --repo xfy-see/mosdns-rust \
   --name "mosdns-rs-aarch64-unknown-linux-musl-full-$commit" \
   --dir /absolute/new-download/arm64-full
 
-python3 -B ci/download-and-test.py \
+"$PYTHON" -B ci/download-and-test.py \
   --artifact /absolute/new-download/arm64-full \
   --expected-commit "$commit" \
   --expected-target aarch64-unknown-linux-musl --expected-profile full \
-  --source-root "$PWD" --verify-only \
+  --source-root "$source_root" --verify-only \
   --output /absolute/new-results/arm64-full-verified
 ```
 
@@ -111,9 +130,9 @@ boot=$(ssh -i "$ssh_identity" -o BatchMode=yes -o IdentitiesOnly=yes \
   -o StrictHostKeyChecking=yes -o UserKnownHostsFile="$known_hosts" \
   root@192.168.100.131 'cat /proc/sys/kernel/random/boot_id')
 
-python3 -B ci/test-router.py \
+"$PYTHON" -B ci/test-router.py \
   --artifact /absolute/new-results/arm64-full-verified/artifact \
-  --source-root "$PWD" --expected-commit "$commit" --profile full \
+  --source-root "$source_root" --expected-commit "$commit" --profile full \
   --host 192.168.100.131 --identity "$ssh_identity" \
   --known-hosts "$known_hosts" --expected-boot "$boot" \
   --output /absolute/new-results/router-full \

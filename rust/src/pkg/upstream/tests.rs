@@ -831,7 +831,8 @@ async fn dot_rejects_a_trusted_certificate_with_wrong_name() {
         addr.port(),
         tls_client_config(),
         false,
-    );
+    )
+    .with_test_dial_addr(addr);
     let upstream = Upstream {
         inner: Arc::new(Inner {
             backend: Backend::Traditional {
@@ -842,11 +843,13 @@ async fn dot_rejects_a_trusted_certificate_with_wrong_name() {
             events: events::Lifecycle::default(),
         }),
     };
-    assert!(format!(
-        "{:#}",
-        upstream.exchange(&query(12, "example.")).await.unwrap_err()
-    )
-    .contains("TLS handshake"));
+    let error = upstream.exchange(&query(12, "example.")).await.unwrap_err();
+    let detail = format!("{error:#}");
+    assert!(detail.contains("TLS handshake"), "{detail}");
+    assert!(
+        detail.contains("NotValidForName") || detail.contains("not valid for name"),
+        "trusted certificate must fail original TLS name validation: {detail}"
+    );
     server.await.unwrap();
 }
 

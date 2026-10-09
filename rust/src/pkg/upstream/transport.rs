@@ -245,6 +245,19 @@ impl Transport {
         }
     }
 
+    // Mock listeners bind an exact address; TLS still validates self.host.
+    // Keeping the socket separate avoids OS localhost address ordering.
+    #[cfg(all(test, feature = "full"))]
+    pub(super) fn with_test_dial_addr(mut self, address: std::net::SocketAddr) -> Self {
+        let options = super::Options {
+            dial_addr: address.to_string(),
+            ..super::Options::default()
+        };
+        self.dialer = Dialer::new(self.host.clone(), self.port, &options)
+            .expect("fixed mock server address is valid");
+        self
+    }
+
     #[cfg(test)]
     async fn first_session(&self) -> Arc<Session> {
         let slot = self.pool.slots.lock().unwrap()[0].clone();
