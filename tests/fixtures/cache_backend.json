@@ -1,0 +1,16 @@
+{
+  "shards": 64,
+  "capacity_cases": [
+    {"size": 0, "inserted": 192, "expected": 192},
+    {"size": 1, "inserted": 192, "expected": 192},
+    {"size": 63, "inserted": 192, "expected": 192},
+    {"size": 64, "inserted": 192, "expected": 64},
+    {"size": 65, "inserted": 192, "expected": 64},
+    {"size": 127, "inserted": 192, "expected": 64},
+    {"size": 128, "inserted": 192, "expected": 128},
+    {"size": 1024, "inserted": 4096, "expected": 1024}
+  ],
+  "collision_keys": [0, 64, 128],
+  "expired_store_ms": -60000,
+  "live_store_ms": 60000
+}

@@ -1,0 +1,20 @@
+{
+  "format_version": 1,
+  "description": "Each case starts with an empty cache; repeated requests use different IDs and assert hit counters and remaining TTL.",
+  "cases": [
+    {"name": "cn_site_direct_domestic_a", "qname": "www.example.cn.", "qtype": 1, "rcode": 0, "addresses": ["1.0.1.9"], "ttl": 111, "repeat": 2},
+    {"name": "cn_site_direct_domestic_aaaa", "qname": "www.example.cn.", "qtype": 28, "rcode": 0, "addresses": ["2400:3200::9"], "ttl": 111, "repeat": 2},
+    {"name": "cn_site_full_rule_normalizes_query_case", "qname": "DiReCt-DoMeStIc.TeSt.", "qtype": 1, "rcode": 0, "addresses": ["1.0.1.9"], "ttl": 111, "repeat": 2},
+    {"name": "cn_site_takes_priority_over_response_ip", "qname": "foreign-answer.cn.", "qtype": 1, "rcode": 0, "addresses": ["203.0.113.19"], "ttl": 111, "repeat": 2},
+    {"name": "unknown_site_cn_response_a", "qname": "unknown-cn.test.", "qtype": 1, "rcode": 0, "addresses": ["1.0.1.9"], "ttl": 111, "repeat": 2},
+    {"name": "unknown_site_cn_response_aaaa", "qname": "unknown-cn.test.", "qtype": 28, "rcode": 0, "addresses": ["2400:3200::9"], "ttl": 111, "repeat": 2},
+    {"name": "unknown_site_non_cn_response_a_uses_foreign", "qname": "unknown-foreign.test.", "qtype": 1, "rcode": 0, "addresses": ["203.0.113.9"], "ttl": 333, "repeat": 2},
+    {"name": "unknown_site_non_cn_response_aaaa_uses_foreign", "qname": "unknown-foreign.test.", "qtype": 28, "rcode": 0, "addresses": ["2001:db8:ffff::9"], "ttl": 333, "repeat": 2},
+    {"name": "nxdomain_and_negative_cache", "qname": "nxdomain.test.", "qtype": 1, "rcode": 3, "addresses": [], "ttl": 0, "repeat": 2},
+    {"name": "refused", "qname": "refused.test.", "qtype": 1, "rcode": 5, "addresses": [], "ttl": 0, "repeat": 1},
+    {"name": "and_negation_blocks_only_a", "qname": "blocked.cn.", "qtype": 1, "rcode": 5, "addresses": [], "ttl": 0, "repeat": 1},
+    {"name": "and_negation_allows_aaaa", "qname": "blocked.cn.", "qtype": 28, "rcode": 0, "addresses": ["2400:3200::9"], "ttl": 111, "repeat": 2},
+    {"name": "unsupported_qtype_has_no_mock_answer", "qname": "www.example.cn.", "qtype": 65, "rcode": 5, "addresses": [], "ttl": 0, "repeat": 1},
+    {"name": "non_inet_class_is_refused", "qname": "www.example.cn.", "qtype": 1, "qclass": 3, "rcode": 5, "addresses": [], "ttl": 0, "repeat": 1}
+  ]
+}

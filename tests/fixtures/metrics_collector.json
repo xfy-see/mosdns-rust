@@ -1,0 +1,31 @@
+{
+  "format_version": 1,
+  "prefix": "mosdns_metrics_collector_",
+  "label_names": ["name"],
+  "names": [
+    {"raw": "collector\"one\\path\nline", "escaped": "collector\\\"one\\\\path\\nline"},
+    {"raw": "collector_two", "escaped": "collector_two"}
+  ],
+  "latency_bounds": [1, 5, 10, 20, 50, 100, 200, 500, 1000, 2000, 5000],
+  "metrics": [
+    {"name": "query_total", "kind": "counter", "help": "The total number of queries pass through"},
+    {"name": "err_total", "kind": "counter", "help": "The total number of queries failed"},
+    {"name": "thread", "kind": "gauge", "help": "The number of threads that are currently being processed"},
+    {"name": "response_latency_millisecond", "kind": "histogram", "help": "The response latency in millisecond"}
+  ],
+  "observations": [
+    {"elapsed_us": 1999, "failed": false, "has_response": true},
+    {"elapsed_us": 999, "failed": true, "has_response": true},
+    {"elapsed_us": 5999, "failed": false, "has_response": false},
+    {"elapsed_us": 2000, "failed": true, "has_response": false},
+    {"elapsed_us": 2001, "failed": false, "has_response": true}
+  ],
+  "expected": {
+    "queries": 5,
+    "errors": 2,
+    "thread": 0,
+    "latency_count": 3,
+    "latency_sum_ms": 3,
+    "bucket_counts": [2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3]
+  }
+}

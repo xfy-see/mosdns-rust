@@ -1,0 +1,39 @@
+# Regenerable build environments and downloaded artifacts
+/target/
+**/target/
+/.build/
+/.cargo/
+/.rustup/
+/artifacts/
+/.artifacts/
+/test-results/
+/validation-results/
+
+# Local device deployments, evidence, and private configuration
+/deployments/
+/optimization/
+/private/
+/secrets/
+.env
+.env.*
+known_hosts
+id_rsa
+id_ed25519
+*.log
+
+# Editor / Python / macOS caches
+__pycache__/
+*.py[cod]
+.DS_Store
+.idea/
+.vscode/
+
+# TLS mock inputs exist only during GitHub compilation; never track or publish them.
+/rust/src/pkg/upstream/fixtures/localhost-cert.der
+/rust/src/pkg/upstream/fixtures/localhost-key.der
+/rust/src/pkg/upstream/fixtures/system-trust/server-cert.der
+/rust/src/pkg/upstream/fixtures/system-trust/server-key.der
+/rust/src/pkg/upstream/fixtures/system-trust/ca.pem
+/rust/src/pkg/upstream/fixtures/system-trust/untrusted-ca.pem
+
+# Keep cache interop dumps, Cargo.lock and approved source snapshots.

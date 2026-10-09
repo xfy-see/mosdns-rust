@@ -1,0 +1,15 @@
+{
+  "unix": {
+    "process_cpu_seconds_total": "COUNTER",
+    "process_open_fds": "GAUGE",
+    "process_max_fds": "GAUGE",
+    "process_virtual_memory_max_bytes": "GAUGE"
+  },
+  "linux": {
+    "process_virtual_memory_bytes": "GAUGE",
+    "process_resident_memory_bytes": "GAUGE",
+    "process_start_time_seconds": "GAUGE",
+    "process_network_receive_bytes_total": "COUNTER",
+    "process_network_transmit_bytes_total": "COUNTER"
+  }
+}

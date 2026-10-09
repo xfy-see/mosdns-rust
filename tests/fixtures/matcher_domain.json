@@ -1,0 +1,216 @@
+{
+  "format_version": 1,
+  "source_tests": [
+    "pkg/matcher/domain/matcher_test.go:TestDomainMatcher",
+    "pkg/matcher/domain/matcher_test.go:Test_FullMatcher",
+    "pkg/matcher/domain/matcher_test.go:Test_KeywordMatcher",
+    "pkg/matcher/domain/matcher_test.go:Test_RegexMatcher"
+  ],
+  "cases": [
+    {
+      "name": "regexp_go_character_class_capture_and_brace_syntax",
+      "rules": ["regexp:^[a&&b]+\\.literal$", "regexp:^[[]\\.bracket$", "regexp:^[]a]+\\.closing$", "regexp:^(?P<1same>a)(?P<1same>b)\\.named$", "regexp:^a{01}\\.brace$", "regexp:^a{2\\.open$", "regexp:^[[:alpha:]]+\\.posix$"],
+      "invalid_rules": ["regexp:(?x)a", "regexp:(?u)a", "regexp:\\u0061", "regexp:\\1", "regexp:a{1001}", "regexp:[\\b]", "regexp:[\\Qabc\\E]"],
+      "expected_len": 7,
+      "queries": [
+        {"domain": "a&b.literal", "matches": true},
+        {"domain": "c.literal", "matches": false},
+        {"domain": "[.bracket", "matches": true},
+        {"domain": "a].closing", "matches": true},
+        {"domain": "ab.named", "matches": true},
+        {"domain": "a{01}.brace", "matches": true},
+        {"domain": "a.brace", "matches": false},
+        {"domain": "a{2.open", "matches": true},
+        {"domain": "abc.posix", "matches": true},
+        {"domain": "中文.posix", "matches": false}
+      ]
+    },
+    {
+      "name": "unicode_simple_case_normalization",
+      "rules": ["full:İ.example", "full:ΟΣ.example", "full:ǅ.example"],
+      "expected_len": 3,
+      "queries": [
+        {"domain": "i.example", "matches": true},
+        {"domain": "i̇.example", "matches": false},
+        {"domain": "οσ.example", "matches": true},
+        {"domain": "ος.example", "matches": false},
+        {"domain": "ǆ.example", "matches": true}
+      ]
+    },
+    {
+      "name": "regexp_ascii_classes_unicode_properties_and_quote",
+      "rules": ["regexp:^\\d+\\.digits$", "regexp:^\\w+\\.word$", "regexp:^a\\s+b\\.space$", "regexp:^\\p{Han}+\\.unicode$", "regexp:^\\Qliteral[a].quoted\\E$", "regexp:^\\141\\.octal$", "regexp:^[\\d]+\\.class$"],
+      "expected_len": 7,
+      "queries": [
+        {"domain": "123.digits", "matches": true},
+        {"domain": "١٢٣.digits", "matches": false},
+        {"domain": "abc_123.word", "matches": true},
+        {"domain": "中文.word", "matches": false},
+        {"domain": "a b.space", "matches": true},
+        {"domain": "a\u000bb.space", "matches": false},
+        {"domain": "a b.space", "matches": false},
+        {"domain": "中文.unicode", "matches": true},
+        {"domain": "literal[a].quoted", "matches": true},
+        {"domain": "literala.quoted", "matches": false},
+        {"domain": "a.octal", "matches": true},
+        {"domain": "123.class", "matches": true},
+        {"domain": "١٢٣.class", "matches": false}
+      ]
+    },
+    {
+      "name": "regexp_ascii_word_boundary",
+      "rules": ["regexp:\\bexample\\b"],
+      "expected_len": 1,
+      "queries": [
+        {"domain": "example.com", "matches": true},
+        {"domain": "中文example中文", "matches": true},
+        {"domain": "prefixexample.com", "matches": false}
+      ]
+    },
+    {
+      "name": "subdomains_from_go",
+      "rules": ["cn", "a.b.com", "append", "append.", "append", "sub", "a.sub", "UPpER"],
+      "expected_len": 6,
+      "queries": [
+        {"domain": "cn", "matches": true},
+        {"domain": "a.cn.", "matches": true},
+        {"domain": "a.com", "matches": false},
+        {"domain": "a.b.com.", "matches": true},
+        {"domain": "q.w.e.r.a.b.com.", "matches": true},
+        {"domain": "b.com.", "matches": false},
+        {"domain": "append.", "matches": true},
+        {"domain": "sub", "matches": true},
+        {"domain": "b.sub", "matches": true},
+        {"domain": "a.sub", "matches": true},
+        {"domain": "a.a.sub", "matches": true},
+        {"domain": "LowER.Upper", "matches": true},
+        {"domain": "notcn", "matches": false},
+        {"domain": "cn.example", "matches": false},
+        {"domain": "", "matches": false},
+        {"domain": ".", "matches": false}
+      ]
+    },
+    {
+      "name": "full_from_go",
+      "rules": ["full:cn", "full:test.test", "full:append", "full:append", "full:append", "full:UPpER"],
+      "expected_len": 4,
+      "queries": [
+        {"domain": "cn", "matches": true},
+        {"domain": "a.cn", "matches": false},
+        {"domain": "test.test", "matches": true},
+        {"domain": "test.a.test", "matches": false},
+        {"domain": "append", "matches": true},
+        {"domain": "Upper", "matches": true},
+        {"domain": "UPPER.", "matches": true},
+        {"domain": "upper..", "matches": false},
+        {"domain": "prefix.upper", "matches": false},
+        {"domain": "upper.suffix", "matches": false}
+      ]
+    },
+    {
+      "name": "keyword_from_go",
+      "rules": ["keyword:123", "keyword:example.com", "keyword:append", "keyword:append", "keyword:append", "keyword:UPpER"],
+      "expected_len": 4,
+      "queries": [
+        {"domain": "123456.cn", "matches": true},
+        {"domain": "111123.com", "matches": true},
+        {"domain": "111111.cn", "matches": false},
+        {"domain": "sub.example.com", "matches": true},
+        {"domain": "example_sub.com", "matches": false},
+        {"domain": "append", "matches": true},
+        {"domain": "L.Upper.U", "matches": true},
+        {"domain": "unrelated.example", "matches": false}
+      ]
+    },
+    {
+      "name": "regexp_from_go",
+      "rules": ["regexp:^github-production-release-asset-[0-9a-za-z]{6}\\.s3\\.amazonaws\\.com$", "regexp:^example", "regexp:append", "regexp:append", "regexp:append"],
+      "invalid_rules": ["regexp:*", "regexp:[", "unknown:example.com"],
+      "expected_len": 3,
+      "queries": [
+        {"domain": "github-production-release-asset-000000.s3.amazonaws.com", "matches": true},
+        {"domain": "github-production-release-asset-aaaaaa.s3.amazonaws.com", "matches": true},
+        {"domain": "github-production-release-asset-aa.s3.amazonaws.com", "matches": false},
+        {"domain": "prefix_github-production-release-asset-000000.s3.amazonaws.com", "matches": false},
+        {"domain": "github-production-release-asset-000000.s3.amazonaws.com.suffix", "matches": false},
+        {"domain": "GITHUB-PRODUCTION-RELEASE-ASSET-ABC123.S3.AMAZONAWS.COM.", "matches": true},
+        {"domain": "example.com", "matches": true},
+        {"domain": "sub.example.com", "matches": false},
+        {"domain": "append", "matches": true}
+      ]
+    },
+    {
+      "name": "mixed_rules_and_normalized_duplicates",
+      "rules": ["domain:EXAMPLE.com.", "domain:example.COM", "full:Only.example.net.", "keyword:needle", "regexp:^asset-[0-9]+\\.example\\.org$", ":default.test"],
+      "expected_len": 5,
+      "queries": [
+        {"domain": "www.example.com.", "matches": true},
+        {"domain": "badexample.com", "matches": false},
+        {"domain": "only.example.net", "matches": true},
+        {"domain": "sub.only.example.net", "matches": false},
+        {"domain": "a.NEEDLE.b", "matches": true},
+        {"domain": "asset-10.example.org.", "matches": true},
+        {"domain": "asset-a.example.org", "matches": false},
+        {"domain": "sub.default.test", "matches": true},
+        {"domain": "unmatched.invalid", "matches": false}
+      ]
+    },
+    {
+      "name": "root_rule_preserves_go_length",
+      "rules": ["domain:."],
+      "expected_len": 0,
+      "queries": [
+        {"domain": "any.domain", "matches": true},
+        {"domain": ".", "matches": true},
+        {"domain": "", "matches": true}
+      ]
+    },
+    {
+      "name": "empty_keyword_preserves_go",
+      "rules": ["keyword:"],
+      "expected_len": 1,
+      "queries": [
+        {"domain": "example.com", "matches": true},
+        {"domain": "", "matches": true}
+      ]
+    },
+    {
+      "name": "subdomain_scanner_trims_second_trailing_dot",
+      "rules": ["domain:example.com.."],
+      "expected_len": 1,
+      "queries": [
+        {"domain": "example.com", "matches": true},
+        {"domain": "example.com..", "matches": true},
+        {"domain": "example.com...", "matches": false}
+      ]
+    }
+  ],
+  "load_cases": [
+    {
+      "name": "comments_blank_lines_and_crlf",
+      "text": "# comment\r\n\r\n  domain:Example.com. # inline comment\r\nfull:only.test\r\nkeyword:needle\r\nregexp:^asset:[0-9]+$\r\n",
+      "expected_len": 4,
+      "queries": [
+        {"domain": "WWW.EXAMPLE.COM.", "matches": true},
+        {"domain": "only.test", "matches": true},
+        {"domain": "sub.only.test", "matches": false},
+        {"domain": "hay.needle", "matches": true},
+        {"domain": "asset:123", "matches": true}
+      ]
+    },
+    {
+      "name": "load_rejects_additional_sections",
+      "text": "example.com\nfull:example.net extra\n",
+      "error_line": 2,
+      "expected_len": 1,
+      "queries": [{"domain": "example.com", "matches": true}]
+    },
+    {
+      "name": "load_rejects_invalid_regexp",
+      "text": "example.com\n# comment\nregexp:[\n",
+      "error_line": 3,
+      "expected_len": 1,
+      "queries": [{"domain": "example.com", "matches": true}]
+    }
+  ]
+}

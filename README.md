@@ -80,6 +80,8 @@ ci/                            GitHub 产物打包、下载校验及本地测试
 .github/workflows/build.yml    GitHub 编译与质量检查
 ```
 
+TLS mock 所需证书与私钥不作为固定文件提交。GitHub Actions 编译前由 [generate-test-fixtures.py](ci/generate-test-fixtures.py) 临时生成相同测试路径的本轮素材；harness 只内嵌一次性的 localhost mock 输入。两个生成私钥文件在编译后删除，不以独立文件进入源码快照或 artifact；四个公开测试证书可供运行测试使用。manifest 的 `generated_test_inputs` 单独记录路径、大小与 SHA，区别于 Git 已跟踪源码。真实设备凭据始终不进入源码、日志或产物。
+
 GitHub 为 macOS ARM64、Linux x86_64 musl 与 Linux ARM64 musl 构建 full/minimal，并执行对应测试；下载的 native harness 仍需在本机完整运行，Linux ARM64 harness 与 CLI 需在 `192.168.100.131` 做实际回归、socket/nftset 验证和完整性能测试。CI 通过、交叉构建通过和设备实测分别记录；默认 ignored 的权限用例逐项列明。
 
 [ci/test-router.py](ci/test-router.py) 校验本 commit 的 ARM64 artifact 和干净源码 checkout，逐个在 131 执行完整普通 harness，并由 [router-session.sh](ci/router-session.sh) 监控、核对 boot/PID/可执行文件归属及清理。默认仅生成计划，`--execute` 才运行；`--nft` 和 `--socket-options` 分别显式执行隔离 nftset 读回和 socket 权限用例。`--ipset-probe` 只查询 IPSet subsystem 能力，不创建 set；131 历史缺少 IPSet 支持，若查询失败单独记录为 capability 失败/不可用，不算通过，也不证明 IPSet 元素互操作。

@@ -1,0 +1,148 @@
+{
+  "format_version": 1,
+  "source_tests": [
+    "pkg/matcher/netlist/netlist_test.go:TestIPNetList_Sort_And_Merge",
+    "pkg/matcher/netlist/netlist_test.go:TestIPNetList_New_And_Contains"
+  ],
+  "cases": [
+    {
+      "name": "scoped_ipv6_host_rule_drops_zone_like_go_prefix_from",
+      "rules": ["fe80::1%eth0"],
+      "invalid_rules": ["fe80::1%", "192.0.2.1%eth0"],
+      "expected_len": 1,
+      "queries": [
+        {"ip": "fe80::1", "matches": true},
+        {"ip": "fe80::2", "matches": false}
+      ]
+    },
+    {
+      "name": "sort_and_merge_from_go",
+      "rules": ["192.168.0.0/32", "192.168.0.0/24", "192.168.0.0/16", "192.168.1.1/24", "192.168.9.24/24", "192.168.3.0/24", "192.169.0.0/16", "104.16.0.0/12"],
+      "expected_len": 3,
+      "queries": [
+        {"ip": "192.167.255.255", "matches": false},
+        {"ip": "192.168.0.0", "matches": true},
+        {"ip": "192.168.1.1", "matches": true},
+        {"ip": "192.168.9.255", "matches": true},
+        {"ip": "192.168.255.255", "matches": true},
+        {"ip": "192.169.1.1", "matches": true},
+        {"ip": "192.170.1.1", "matches": false},
+        {"ip": "1.1.1.1", "matches": false},
+        {"ip": "104.16.67.38", "matches": true},
+        {"ip": "104.32.67.38", "matches": false}
+      ]
+    },
+    {
+      "name": "ipv4_ipv6_from_go",
+      "rules": ["1.0.0.0/24", "2.0.0.0/23", "3.0.0.0", "2000:0000::/32", "2000:2000::1"],
+      "expected_len": 5,
+      "queries": [
+        {"ip": "1.0.0.0", "matches": true},
+        {"ip": "1.0.0.1", "matches": true},
+        {"ip": "1.0.1.0", "matches": false},
+        {"ip": "2.0.0.0", "matches": true},
+        {"ip": "2.0.1.255", "matches": true},
+        {"ip": "2.0.2.0", "matches": false},
+        {"ip": "3.0.0.0", "matches": true},
+        {"ip": "3.0.0.1", "matches": false},
+        {"ip": "2000:0000::", "matches": true},
+        {"ip": "2000:0000::1", "matches": true},
+        {"ip": "2000:0000:1::", "matches": true},
+        {"ip": "2000:0001::", "matches": false},
+        {"ip": "2000:2000::1", "matches": true},
+        {"ip": "2000:2000::2", "matches": false}
+      ]
+    },
+    {
+      "name": "prefix_boundaries_host_bits_duplicates_and_mapped_ipv4",
+      "rules": ["10.0.0.129/25", "10.0.0.128/25", "2001:db8::ffff/127", "::ffff:192.0.2.42/120", "192.0.2.0/24"],
+      "invalid_rules": ["", "invalid", "192.168.1.0/33", "2001:db8::/129", "300.0.0.1", "fe80::1%eth0/64"],
+      "expected_len": 3,
+      "queries": [
+        {"ip": "10.0.0.127", "matches": false},
+        {"ip": "10.0.0.128", "matches": true},
+        {"ip": "10.0.0.255", "matches": true},
+        {"ip": "10.0.1.0", "matches": false},
+        {"ip": "2001:db8::fffd", "matches": false},
+        {"ip": "2001:db8::fffe", "matches": true},
+        {"ip": "2001:db8::ffff", "matches": true},
+        {"ip": "2001:db8::1:0", "matches": false},
+        {"ip": "192.0.2.42", "matches": true},
+        {"ip": "::ffff:192.0.2.42", "matches": true},
+        {"ip": "::192.0.2.42", "matches": false},
+        {"ip": "192.0.3.0", "matches": false}
+      ]
+    },
+    {
+      "name": "ipv4_default_route_stays_in_mapped_range",
+      "rules": ["0.0.0.0/0"],
+      "expected_len": 1,
+      "queries": [
+        {"ip": "0.0.0.0", "matches": true},
+        {"ip": "255.255.255.255", "matches": true},
+        {"ip": "::ffff:8.8.8.8", "matches": true},
+        {"ip": "::", "matches": false},
+        {"ip": "2001:db8::1", "matches": false}
+      ]
+    },
+    {
+      "name": "ipv6_default_route_preserves_go_cross_family_behavior",
+      "rules": ["192.0.2.0/24", "::/0", "2001:db8::/32"],
+      "expected_len": 1,
+      "queries": [
+        {"ip": "::", "matches": true},
+        {"ip": "ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff", "matches": true},
+        {"ip": "8.8.8.8", "matches": true},
+        {"ip": "::ffff:8.8.8.8", "matches": true}
+      ]
+    },
+    {
+      "name": "empty_list",
+      "rules": [],
+      "expected_len": 0,
+      "queries": [
+        {"ip": "0.0.0.0", "matches": false},
+        {"ip": "::", "matches": false}
+      ]
+    }
+  ],
+  "load_cases": [
+    {
+      "name": "comments_and_additional_columns_from_go",
+      "text": "# comment line\n1.0.0.0/24 additional strings should be ignored\n2.0.0.0/23 # comment\n3.0.0.0\n\n2000:0000::/32\n2000:2000::1\n",
+      "expected_len": 5,
+      "queries": [
+        {"ip": "1.0.0.1", "matches": true},
+        {"ip": "2.0.1.255", "matches": true},
+        {"ip": "3.0.0.0", "matches": true},
+        {"ip": "2000:0000:1::", "matches": true},
+        {"ip": "2000:2000::1", "matches": true}
+      ]
+    },
+    {
+      "name": "crlf_and_host_bits",
+      "text": "  # comment\r\n\r\n 192.0.2.129/24 # comment\r\n 2001:db8::1/32\r\n",
+      "expected_len": 2,
+      "queries": [
+        {"ip": "192.0.2.0", "matches": true},
+        {"ip": "192.0.3.0", "matches": false},
+        {"ip": "2001:db8:ffff::1", "matches": true},
+        {"ip": "2001:db9::", "matches": false}
+      ]
+    },
+    {
+      "name": "loader_error_has_line_number",
+      "text": "192.0.2.0/24\n# comment\ninvalid\n",
+      "error_line": 3,
+      "expected_len": 1,
+      "queries": [{"ip": "192.0.2.1", "matches": true}]
+    },
+    {
+      "name": "embedded_tab_preserves_go_loader_error",
+      "text": "192.0.2.0/24\n198.51.100.0/24\tcomment\n",
+      "error_line": 2,
+      "expected_len": 1,
+      "queries": [{"ip": "192.0.2.1", "matches": true}]
+    }
+  ]
+}

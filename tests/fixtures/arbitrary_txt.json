@@ -1,0 +1,160 @@
+{
+  "format_version": 1,
+  "cases": [
+    {
+      "name": "quoted_binary_octets",
+      "group": "escapes",
+      "qname": "binary.example.",
+      "ttl": 73,
+      "zone": "binary.example. 73 IN TXT \"\\000\\001\\127\\128\\255\"\n",
+      "answers": [
+        [
+          "00017f80ff"
+        ]
+      ]
+    },
+    {
+      "name": "unquoted_binary_and_space",
+      "group": "escapes",
+      "qname": "raw.example.",
+      "ttl": 73,
+      "zone": "raw.example. 73 IN TXT raw\\032space\\128\\255\n",
+      "answers": [
+        [
+          "72617720737061636580ff"
+        ]
+      ]
+    },
+    {
+      "name": "short_decimal_escapes_are_not_ddd",
+      "group": "escapes",
+      "qname": "short.example.",
+      "ttl": 73,
+      "zone": "short.example. 73 IN TXT \"\\12x \\1 \\01 \\1234\"\n",
+      "answers": [
+        [
+          "3132782031203031207b34"
+        ]
+      ]
+    },
+    {
+      "name": "go_decimal_overflow_wraps_octet",
+      "group": "escapes",
+      "qname": "overflow.example.",
+      "ttl": 73,
+      "zone": "overflow.example. 73 IN TXT \"\\256\\999\"\n",
+      "answers": [
+        [
+          "00e7"
+        ]
+      ]
+    },
+    {
+      "name": "native_utf8",
+      "group": "unicode",
+      "qname": "utf8.example.",
+      "ttl": 91,
+      "zone": "utf8.example. 91 IN TXT \"中文🙂\"\n",
+      "answers": [
+        [
+          "e4b8ade69687f09f9982"
+        ]
+      ]
+    },
+    {
+      "name": "escaped_punctuation_and_empty",
+      "group": "presentation",
+      "qname": "punct.example.",
+      "ttl": 1,
+      "zone": "punct.example. 1 IN TXT \"a\\\"b\\\\c\\;\\(d\\)\\032e\" \"\"\n",
+      "answers": [
+        [
+          "6122625c633b2864292065",
+          ""
+        ]
+      ]
+    },
+    {
+      "name": "chunk_exact_255",
+      "group": "chunk",
+      "qname": "exact.example.",
+      "ttl": 12,
+      "zone": "exact.example. 12 IN TXT \"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\"\n",
+      "answers": [
+        [
+          "616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161"
+        ]
+      ]
+    },
+    {
+      "name": "chunk_256_ascii",
+      "group": "chunk",
+      "qname": "long.example.",
+      "ttl": 12,
+      "zone": "long.example. 12 IN TXT \"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\"\n",
+      "answers": [
+        [
+          "616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161",
+          "61"
+        ]
+      ]
+    },
+    {
+      "name": "chunk_256_decoded_binary",
+      "group": "chunk",
+      "qname": "longbinary.example.",
+      "ttl": 12,
+      "zone": "longbinary.example. 12 IN TXT \"\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\\255\"\n",
+      "answers": [
+        [
+          "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+          "ff"
+        ]
+      ]
+    },
+    {
+      "name": "utf8_chunk_may_split_codepoint",
+      "group": "unicode",
+      "qname": "utf8long.example.",
+      "ttl": 91,
+      "zone": "utf8long.example. 91 IN TXT \"ééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééé中文\"\n",
+      "answers": [
+        [
+          "c3a9c3a9c3a9c3a9c3a9c3a9c3a9c3a9c3a9c3a9c3a9c3a9c3a9c3a9c3a9c3a9c3a9c3a9c3a9c3a9c3a9c3a9c3a9c3a9c3a9c3a9c3a9c3a9c3a9c3a9c3a9c3a9c3a9c3a9c3a9c3a9c3a9c3a9c3a9c3a9c3a9c3a9c3a9c3a9c3a9c3a9c3a9c3a9c3a9c3a9c3a9c3a9c3a9c3a9c3a9c3a9c3a9c3a9c3a9c3a9c3a9c3a9c3a9c3a9c3a9c3a9c3a9c3a9c3a9c3a9c3a9c3a9c3a9c3a9c3a9c3a9c3a9c3a9c3a9c3a9c3a9c3a9c3a9c3a9c3a9c3a9c3a9c3a9c3a9c3a9c3a9c3a9c3a9c3a9c3a9c3a9c3a9c3a9c3a9c3a9c3a9c3a9c3a9c3a9c3a9c3a9c3a9c3a9c3a9c3a9c3a9c3a9c3a9c3a9c3a9c3a9c3a9c3a9c3a9c3a9c3a9c3a9c3a9c3a9c3a9c3a9c3a9e4",
+          "b8ade69687"
+        ]
+      ]
+    },
+    {
+      "name": "separate_long_empty_tail_segments",
+      "group": "chunk",
+      "qname": "segments.example.",
+      "ttl": 12,
+      "zone": "segments.example. 12 IN TXT \"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\" \"\" \"tail\"\n",
+      "answers": [
+        [
+          "616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161",
+          "61",
+          "",
+          "7461696c"
+        ]
+      ]
+    },
+    {
+      "name": "multiline_order_and_origin",
+      "group": "presentation",
+      "qname": "fixture.example.",
+      "ttl": 42,
+      "zone": "$ORIGIN fixture.example.\n$TTL 42\n@ TXT ( \"\\128\" ; comment\n \"\\255\" )\n  IN TXT \"ok\"\n",
+      "answers": [
+        [
+          "80",
+          "ff"
+        ],
+        [
+          "6f6b"
+        ]
+      ]
+    }
+  ]
+}

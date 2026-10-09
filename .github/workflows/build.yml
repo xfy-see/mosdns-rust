@@ -1,0 +1,150 @@
+name: Rust build and test
+
+on:
+  push:
+    branches: ['**']
+    tags: ['v*']
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: rust-build-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  RUST_VERSION: '1.99.0'
+  CARGO_TERM_COLOR: never
+  CARGO_INCREMENTAL: '0'
+  CARGO_PROFILE_RELEASE_STRIP: symbols
+  RUST_BACKTRACE: '1'
+
+jobs:
+  quality:
+    name: Format and Clippy
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+        with:
+          persist-credentials: false
+      - name: Install pinned Rust tools on the GitHub runner
+        run: |
+          rustup toolchain install "$RUST_VERSION" --profile minimal --component rustfmt --component clippy
+          rustup default "$RUST_VERSION"
+          rustc --version --verbose
+      - name: Check format
+        run: cargo fmt --all -- --check
+      - name: Test artifact tooling
+        run: python3 -B -m unittest discover -s ci -p 'test_*.py'
+      - name: Generate one-run mock TLS fixtures
+        run: python3 -B ci/generate-test-fixtures.py
+      - name: Check artifact verification and router evidence handling
+        run: |
+          python3 -m unittest discover -s ci -p 'test_*.py'
+          /bin/sh -n ci/router-session.sh
+      - name: Check full profile
+        env:
+          CARGO_TARGET_DIR: ${{ runner.temp }}/quality-full
+        run: cargo clippy --locked --workspace --all-targets --no-default-features --features full -- -D warnings
+      - name: Check minimal profile
+        env:
+          CARGO_TARGET_DIR: ${{ runner.temp }}/quality-minimal
+        run: cargo clippy --locked --workspace --all-targets --no-default-features --features minimal -- -D warnings
+      - name: Remove one-run compile-only private files
+        if: always()
+        run: python3 -B ci/generate-test-fixtures.py --remove-private-keys
+
+  build:
+    name: ${{ matrix.target }} / ${{ matrix.profile }}
+    runs-on: ${{ matrix.runner }}
+    timeout-minutes: 60
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - runner: ubuntu-24.04
+            target: x86_64-unknown-linux-musl
+            profile: full
+          - runner: ubuntu-24.04
+            target: x86_64-unknown-linux-musl
+            profile: minimal
+          - runner: ubuntu-24.04-arm
+            target: aarch64-unknown-linux-musl
+            profile: full
+          - runner: ubuntu-24.04-arm
+            target: aarch64-unknown-linux-musl
+            profile: minimal
+          - runner: macos-14
+            target: aarch64-apple-darwin
+            profile: full
+          - runner: macos-14
+            target: aarch64-apple-darwin
+            profile: minimal
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+        with:
+          persist-credentials: false
+      - name: Install native musl C compiler
+        if: runner.os == 'Linux'
+        run: |
+          sudo apt-get update
+          sudo apt-get install --no-install-recommends -y musl-tools
+          musl-gcc --version
+      - name: Install pinned Rust on the GitHub runner
+        run: |
+          rustup toolchain install "$RUST_VERSION" --profile minimal --target '${{ matrix.target }}'
+          rustup default "$RUST_VERSION"
+          rustc --version --verbose
+      - name: Build production CLI, test harnesses, and run ordinary tests
+        run: |
+          python3 -B ci/generate-test-fixtures.py
+          python3 -B ci/build-artifact.py --target '${{ matrix.target }}' --profile '${{ matrix.profile }}' --output '.artifacts/${{ matrix.target }}-${{ matrix.profile }}'
+      - name: Upload binaries, source binding, and test evidence
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: mosdns-rs-${{ matrix.target }}-${{ matrix.profile }}-${{ github.sha }}
+          path: .artifacts/${{ matrix.target }}-${{ matrix.profile }}/
+          if-no-files-found: error
+          include-hidden-files: true
+          retention-days: 30
+      - name: Remove one-run compile-only private files
+        if: always()
+        run: python3 -B ci/generate-test-fixtures.py --remove-private-keys
+
+  windows:
+    name: Windows / ${{ matrix.profile }}
+    runs-on: windows-2022
+    timeout-minutes: 45
+    strategy:
+      fail-fast: false
+      matrix:
+        profile: [full, minimal]
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+        with:
+          persist-credentials: false
+      - name: Install pinned Rust on the GitHub runner
+        shell: pwsh
+        run: |
+          rustup toolchain install $env:RUST_VERSION --profile minimal
+          rustup default $env:RUST_VERSION
+          rustc --version --verbose
+      - name: Check and test Windows code
+        shell: pwsh
+        env:
+          CARGO_TARGET_DIR: ${{ runner.temp }}/windows-${{ matrix.profile }}
+        run: |
+          python -B ci/generate-test-fixtures.py
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          cargo check --locked --workspace --all-targets --no-default-features --features '${{ matrix.profile }}'
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          cargo test --locked --workspace --no-default-features --features '${{ matrix.profile }}' -- --test-threads=1
+          exit $LASTEXITCODE
+      - name: Remove one-run compile-only private files
+        if: always()
+        shell: pwsh
+        run: python -B ci/generate-test-fixtures.py --remove-private-keys

@@ -1,0 +1,4385 @@
+{
+  "format_version": 1,
+  "source": "miekg/dns v1.1.72 ZoneParser + PackRR(no compression), default TTL 3600, INCLUDE disabled",
+  "cases": [
+    {
+      "name": "rr_a",
+      "group": "types",
+      "zone": "$ORIGIN Example.\nrr 73 IN A 192.0.2.1\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 1,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "c0000201"
+        }
+      ]
+    },
+    {
+      "name": "rr_aaaa",
+      "group": "types",
+      "zone": "$ORIGIN Example.\nrr 73 IN AAAA 2001:db8::1\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 28,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "20010db8000000000000000000000001"
+        }
+      ]
+    },
+    {
+      "name": "rr_ns",
+      "group": "types",
+      "zone": "$ORIGIN Example.\nrr 73 IN NS ns\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 2,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "026e73074578616d706c6500"
+        }
+      ]
+    },
+    {
+      "name": "rr_md",
+      "group": "types",
+      "zone": "$ORIGIN Example.\nrr 73 IN MD mail\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 3,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "046d61696c074578616d706c6500"
+        }
+      ]
+    },
+    {
+      "name": "rr_mf",
+      "group": "types",
+      "zone": "$ORIGIN Example.\nrr 73 IN MF mail\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 4,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "046d61696c074578616d706c6500"
+        }
+      ]
+    },
+    {
+      "name": "rr_cname",
+      "group": "types",
+      "zone": "$ORIGIN Example.\nrr 73 IN CNAME target\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 5,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "06746172676574074578616d706c6500"
+        }
+      ]
+    },
+    {
+      "name": "rr_soa",
+      "group": "types",
+      "zone": "$ORIGIN Example.\nrr 73 IN SOA ns hostmaster 42 1h 2h 3d 4m\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 6,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "026e73074578616d706c65000a686f73746d6173746572074578616d706c65000000002a00000e1000001c200003f480000000f0"
+        }
+      ]
+    },
+    {
+      "name": "rr_mb",
+      "group": "types",
+      "zone": "$ORIGIN Example.\nrr 73 IN MB mail\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 7,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "046d61696c074578616d706c6500"
+        }
+      ]
+    },
+    {
+      "name": "rr_mg",
+      "group": "types",
+      "zone": "$ORIGIN Example.\nrr 73 IN MG group\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 8,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "0567726f7570074578616d706c6500"
+        }
+      ]
+    },
+    {
+      "name": "rr_mr",
+      "group": "types",
+      "zone": "$ORIGIN Example.\nrr 73 IN MR newmail\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 9,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "076e65776d61696c074578616d706c6500"
+        }
+      ]
+    },
+    {
+      "name": "rr_ptr",
+      "group": "types",
+      "zone": "$ORIGIN Example.\nrr 73 IN PTR pointer\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 12,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "07706f696e746572074578616d706c6500"
+        }
+      ]
+    },
+    {
+      "name": "rr_nsapptr",
+      "group": "types",
+      "zone": "$ORIGIN Example.\nrr 73 IN NSAP-PTR pointer\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 23,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "07706f696e746572074578616d706c6500"
+        }
+      ]
+    },
+    {
+      "name": "rr_mx",
+      "group": "types",
+      "zone": "$ORIGIN Example.\nrr 73 IN MX 10 mail\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 15,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "000a046d61696c074578616d706c6500"
+        }
+      ]
+    },
+    {
+      "name": "rr_afsdb",
+      "group": "types",
+      "zone": "$ORIGIN Example.\nrr 73 IN AFSDB 1 afs\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 18,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "000103616673074578616d706c6500"
+        }
+      ]
+    },
+    {
+      "name": "rr_rt",
+      "group": "types",
+      "zone": "$ORIGIN Example.\nrr 73 IN RT 2 router\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 21,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "000206726f75746572074578616d706c6500"
+        }
+      ]
+    },
+    {
+      "name": "rr_kx",
+      "group": "types",
+      "zone": "$ORIGIN Example.\nrr 73 IN KX 3 exchange\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 36,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "00030865786368616e6765074578616d706c6500"
+        }
+      ]
+    },
+    {
+      "name": "rr_lp",
+      "group": "types",
+      "zone": "$ORIGIN Example.\nrr 73 IN LP 4 locator\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 107,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "0004076c6f6361746f72074578616d706c6500"
+        }
+      ]
+    },
+    {
+      "name": "rr_minfo",
+      "group": "types",
+      "zone": "$ORIGIN Example.\nrr 73 IN MINFO rmail email\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 14,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "05726d61696c074578616d706c650005656d61696c074578616d706c6500"
+        }
+      ]
+    },
+    {
+      "name": "rr_rp",
+      "group": "types",
+      "zone": "$ORIGIN Example.\nrr 73 IN RP hostmaster txt\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 17,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "0a686f73746d6173746572074578616d706c650003747874074578616d706c6500"
+        }
+      ]
+    },
+    {
+      "name": "rr_talink",
+      "group": "types",
+      "zone": "$ORIGIN Example.\nrr 73 IN TALINK previous next\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 58,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "0870726576696f7573074578616d706c6500046e657874074578616d706c6500"
+        }
+      ]
+    },
+    {
+      "name": "rr_dname",
+      "group": "types",
+      "zone": "$ORIGIN Example.\nrr 73 IN DNAME redirect\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 39,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "087265646972656374074578616d706c6500"
+        }
+      ]
+    },
+    {
+      "name": "rr_px",
+      "group": "types",
+      "zone": "$ORIGIN Example.\nrr 73 IN PX 5 map822 mapx400\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 26,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "0005066d6170383232074578616d706c6500076d617078343030074578616d706c6500"
+        }
+      ]
+    },
+    {
+      "name": "rr_txt",
+      "group": "types",
+      "zone": "$ORIGIN Example.\nrr 73 IN TXT \"hello\" \"\\128\\255\"\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 16,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "0568656c6c6f0280ff"
+        }
+      ]
+    },
+    {
+      "name": "rr_spf",
+      "group": "types",
+      "zone": "$ORIGIN Example.\nrr 73 IN SPF \"v=spf1 -all\"\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 99,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "0b763d73706631202d616c6c"
+        }
+      ]
+    },
+    {
+      "name": "rr_avc",
+      "group": "types",
+      "zone": "$ORIGIN Example.\nrr 73 IN AVC \"data\"\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 258,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "0464617461"
+        }
+      ]
+    },
+    {
+      "name": "rr_ninfo",
+      "group": "types",
+      "zone": "$ORIGIN Example.\nrr 73 IN NINFO \"data\" \"more\"\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 56,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "0464617461046d6f7265"
+        }
+      ]
+    },
+    {
+      "name": "rr_resinfo",
+      "group": "types",
+      "zone": "$ORIGIN Example.\nrr 73 IN RESINFO \"qnamemin\" \"exterr\"\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 261,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "08716e616d656d696e06657874657272"
+        }
+      ]
+    },
+    {
+      "name": "rr_uinfo",
+      "group": "types",
+      "zone": "$ORIGIN Example.\nrr 73 IN UINFO \"first\" \"ignored\"\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 100,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "056669727374"
+        }
+      ]
+    },
+    {
+      "name": "rr_hinfo",
+      "group": "types",
+      "zone": "$ORIGIN Example.\nrr 73 IN HINFO \"cpu arch\" \"os\" \"extra\"\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 13,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "086370752061726368086f73206578747261"
+        }
+      ]
+    },
+    {
+      "name": "rr_isdn",
+      "group": "types",
+      "zone": "$ORIGIN Example.\nrr 73 IN ISDN \"150862028003217\" \"004\"\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 20,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "0f31353038363230323830303332313703303034"
+        }
+      ]
+    },
+    {
+      "name": "rr_x25",
+      "group": "types",
+      "zone": "$ORIGIN Example.\nrr 73 IN X25 311061700956\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 19,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "0c333131303631373030393536"
+        }
+      ]
+    },
+    {
+      "name": "rr_gpos",
+      "group": "types",
+      "zone": "$ORIGIN Example.\nrr 73 IN GPOS -32.6882 116.8652 10.0\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 27,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "082d33322e36383832083131362e383635320431302e30"
+        }
+      ]
+    },
+    {
+      "name": "rr_srv",
+      "group": "types",
+      "zone": "$ORIGIN Example.\nrr 73 IN SRV 1 2 443 service\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 33,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "0001000201bb0773657276696365074578616d706c6500"
+        }
+      ]
+    },
+    {
+      "name": "rr_naptr",
+      "group": "types",
+      "zone": "$ORIGIN Example.\nrr 73 IN NAPTR 100 10 \"U\" \"E2U+sip\" \"!^.*$!sip:info@example.com!\" replacement\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 35,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "0064000a0155074532552b7369701b215e2e2a24217369703a696e666f406578616d706c652e636f6d210b7265706c6163656d656e74074578616d706c6500"
+        }
+      ]
+    },
+    {
+      "name": "rr_uri",
+      "group": "types",
+      "zone": "$ORIGIN Example.\nrr 73 IN URI 10 1 \"https://example.com/\\128\"\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 256,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "000a000168747470733a2f2f6578616d706c652e636f6d2f80"
+        }
+      ]
+    },
+    {
+      "name": "rr_caa",
+      "group": "types",
+      "zone": "$ORIGIN Example.\nrr 73 IN CAA 128 issue \"ca.example; account=123\"\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 257,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "8005697373756563612e6578616d706c653b206163636f756e743d313233"
+        }
+      ]
+    },
+    {
+      "name": "rr_dnskey",
+      "group": "types",
+      "zone": "$ORIGIN Example.\nrr 73 IN DNSKEY 257 3 8 AQIDBA==\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 48,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "0101030801020304"
+        }
+      ]
+    },
+    {
+      "name": "rr_cdnskey",
+      "group": "types",
+      "zone": "$ORIGIN Example.\nrr 73 IN CDNSKEY 0 3 0 AA==\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 60,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "0000030000"
+        }
+      ]
+    },
+    {
+      "name": "rr_key",
+      "group": "types",
+      "zone": "$ORIGIN Example.\nrr 73 IN KEY 256 3 8 AQIDBA==\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 25,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "0100030801020304"
+        }
+      ]
+    },
+    {
+      "name": "rr_rkey",
+      "group": "types",
+      "zone": "$ORIGIN Example.\nrr 73 IN RKEY 256 3 8 AQIDBA==\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 57,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "0100030801020304"
+        }
+      ]
+    },
+    {
+      "name": "rr_ds",
+      "group": "types",
+      "zone": "$ORIGIN Example.\nrr 73 IN DS 12345 RSASHA256 2 AABB CCDD\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 43,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "30390802aabbccdd"
+        }
+      ]
+    },
+    {
+      "name": "rr_cds",
+      "group": "types",
+      "zone": "$ORIGIN Example.\nrr 73 IN CDS 0 0 0 00\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 59,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "0000000000"
+        }
+      ]
+    },
+    {
+      "name": "rr_dlv",
+      "group": "types",
+      "zone": "$ORIGIN Example.\nrr 73 IN DLV 12345 8 2 AABBCCDD\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 32769,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "30390802aabbccdd"
+        }
+      ]
+    },
+    {
+      "name": "rr_ta",
+      "group": "types",
+      "zone": "$ORIGIN Example.\nrr 73 IN TA 12345 RSASHA256 2 AABBCCDD\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 32768,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "30390802aabbccdd"
+        }
+      ]
+    },
+    {
+      "name": "rr_rrsig",
+      "group": "types",
+      "zone": "$ORIGIN Example.\nrr 73 IN RRSIG A 8 2 3600 20300101000000 20260101000000 12345 signer AQID BA==\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 46,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "0001080200000e1070dbd8806955b9003039067369676e6572074578616d706c650001020304"
+        }
+      ]
+    },
+    {
+      "name": "rr_sig",
+      "group": "types",
+      "zone": "$ORIGIN Example.\nrr 73 IN SIG A 8 2 3600 2000000000 1800000000 12345 signer AQIDBA==\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 24,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "0001080200000e10773594006b49d2003039067369676e6572074578616d706c650001020304"
+        }
+      ]
+    },
+    {
+      "name": "rr_nsec",
+      "group": "types",
+      "zone": "$ORIGIN Example.\nrr 73 IN NSEC next A NS SOA RRSIG NSEC DNSKEY TYPE257 TYPE65534\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 47,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "046e657874074578616d706c6500000762000000000380010140ff200000000000000000000000000000000000000000000000000000000000000002"
+        }
+      ]
+    },
+    {
+      "name": "rr_nxt",
+      "group": "types",
+      "zone": "$ORIGIN Example.\nrr 73 IN NXT next A NS SOA\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 30,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "046e657874074578616d706c6500000162"
+        }
+      ]
+    },
+    {
+      "name": "rr_nsec3",
+      "group": "types",
+      "zone": "$ORIGIN Example.\nrr 73 IN NSEC3 1 0 10 AABB 00000000000000000000000000000000 A NS SOA\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 50,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "0100000a02aabb140000000000000000000000000000000000000000000162"
+        }
+      ]
+    },
+    {
+      "name": "rr_nsec3param",
+      "group": "types",
+      "zone": "$ORIGIN Example.\nrr 73 IN NSEC3PARAM 1 0 10 -\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 51,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "0100000a00"
+        }
+      ]
+    },
+    {
+      "name": "rr_tlsa",
+      "group": "types",
+      "zone": "$ORIGIN Example.\nrr 73 IN TLSA 3 1 1 AABB CCDD\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 52,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "030101aabbccdd"
+        }
+      ]
+    },
+    {
+      "name": "rr_smimea",
+      "group": "types",
+      "zone": "$ORIGIN Example.\nrr 73 IN SMIMEA 3 1 1 AABBCCDD\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 53,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "030101aabbccdd"
+        }
+      ]
+    },
+    {
+      "name": "rr_sshfp",
+      "group": "types",
+      "zone": "$ORIGIN Example.\nrr 73 IN SSHFP 1 1 AABB CCDD\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 44,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "0101aabbccdd"
+        }
+      ]
+    },
+    {
+      "name": "rr_cert",
+      "group": "types",
+      "zone": "$ORIGIN Example.\nrr 73 IN CERT PKIX 12345 RSASHA256 AQIDBA==\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 37,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "000130390801020304"
+        }
+      ]
+    },
+    {
+      "name": "rr_openpgpkey",
+      "group": "types",
+      "zone": "$ORIGIN Example.\nrr 73 IN OPENPGPKEY AQID BA==\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 61,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "01020304"
+        }
+      ]
+    },
+    {
+      "name": "rr_dhcid",
+      "group": "types",
+      "zone": "$ORIGIN Example.\nrr 73 IN DHCID AQID BA==\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 49,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "01020304"
+        }
+      ]
+    },
+    {
+      "name": "rr_zonemd",
+      "group": "types",
+      "zone": "$ORIGIN Example.\nrr 73 IN ZONEMD 42 1 1 AABB CCDD\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 63,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "0000002a0101aabbccdd"
+        }
+      ]
+    },
+    {
+      "name": "rr_csync",
+      "group": "types",
+      "zone": "$ORIGIN Example.\nrr 73 IN CSYNC 42 3 A NS AAAA TYPE257\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 62,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "0000002a0003000460000008010140"
+        }
+      ]
+    },
+    {
+      "name": "rr_hip",
+      "group": "types",
+      "zone": "$ORIGIN Example.\nrr 73 IN HIP 2 AABBCCDD AQIDBA== rendezvous rendezvous2\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 55,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "04020004aabbccdd010203040a72656e64657a766f7573074578616d706c65000b72656e64657a766f757332074578616d706c6500"
+        }
+      ]
+    },
+    {
+      "name": "rr_ipseckey",
+      "group": "types",
+      "zone": "$ORIGIN Example.\nrr 73 IN IPSECKEY 10 3 2 gateway AQIDBA==\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 45,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "0a03020767617465776179074578616d706c650001020304"
+        }
+      ]
+    },
+    {
+      "name": "rr_amtrelay",
+      "group": "types",
+      "zone": "$ORIGIN Example.\nrr 73 IN AMTRELAY 10 0 3 gateway\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 260,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "0a030767617465776179074578616d706c6500"
+        }
+      ]
+    },
+    {
+      "name": "rr_loc",
+      "group": "types",
+      "zone": "$ORIGIN Example.\nrr 73 IN LOC 37 47 0.125 N 122 23 0.5 W 10.25m 1m 10000m 10m\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 29,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "00121613881b809d65bd466c00989a81"
+        }
+      ]
+    },
+    {
+      "name": "rr_eui48",
+      "group": "types",
+      "zone": "$ORIGIN Example.\nrr 73 IN EUI48 00-01-02-03-04-05\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 108,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "000102030405"
+        }
+      ]
+    },
+    {
+      "name": "rr_eui64",
+      "group": "types",
+      "zone": "$ORIGIN Example.\nrr 73 IN EUI64 00-01-02-03-04-05-06-07\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 109,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "0001020304050607"
+        }
+      ]
+    },
+    {
+      "name": "rr_nid",
+      "group": "types",
+      "zone": "$ORIGIN Example.\nrr 73 IN NID 10 0001:0002:0003:0004\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 104,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "000a0001000200030004"
+        }
+      ]
+    },
+    {
+      "name": "rr_l32",
+      "group": "types",
+      "zone": "$ORIGIN Example.\nrr 73 IN L32 10 192.0.2.2\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 105,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "000ac0000202"
+        }
+      ]
+    },
+    {
+      "name": "rr_l64",
+      "group": "types",
+      "zone": "$ORIGIN Example.\nrr 73 IN L64 10 0001:0002:0003:0004\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 106,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "000a0001000200030004"
+        }
+      ]
+    },
+    {
+      "name": "rr_uid",
+      "group": "types",
+      "zone": "$ORIGIN Example.\nrr 73 IN UID 123456\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 101,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "0001e240"
+        }
+      ]
+    },
+    {
+      "name": "rr_gid",
+      "group": "types",
+      "zone": "$ORIGIN Example.\nrr 73 IN GID 654321\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 102,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "0009fbf1"
+        }
+      ]
+    },
+    {
+      "name": "rr_eid",
+      "group": "types",
+      "zone": "$ORIGIN Example.\nrr 73 IN EID AABB CCDD\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 31,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "aabbccdd"
+        }
+      ]
+    },
+    {
+      "name": "rr_nimloc",
+      "group": "types",
+      "zone": "$ORIGIN Example.\nrr 73 IN NIMLOC AABB CCDD\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 32,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "aabbccdd"
+        }
+      ]
+    },
+    {
+      "name": "rr_apl",
+      "group": "types",
+      "zone": "$ORIGIN Example.\nrr 73 IN APL 1:192.0.2.0/24 !2:2001:db8::/32\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 42,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "00011803c000020002208420010db8"
+        }
+      ]
+    },
+    {
+      "name": "rr_svcb",
+      "group": "types",
+      "zone": "$ORIGIN Example.\nrr 73 IN SVCB 1 target mandatory=alpn,port alpn=\"h2,h3\" port=443 ipv4hint=192.0.2.1,192.0.2.2 ech=AQIDBA== ipv6hint=2001:db8::1 dohpath=\"/dns-query{?dns}\" ohttp key65400=\"\\128\\255\"\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 64,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "000106746172676574074578616d706c65000000000400010003000100060268320268330003000201bb00040008c0000201c000020200050004010203040006001020010db8000000000000000000000001000700102f646e732d71756572797b3f646e737d00080000ff78000280ff"
+        }
+      ]
+    },
+    {
+      "name": "rr_https",
+      "group": "types",
+      "zone": "$ORIGIN Example.\nrr 73 IN HTTPS 0 alias\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 65,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "000005616c696173074578616d706c6500"
+        }
+      ]
+    },
+    {
+      "name": "rr_tkey",
+      "group": "types",
+      "zone": "$ORIGIN Example.\nrr 73 IN TKEY hmac-sha256. 2 AABB 1 CC\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 249,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "0b686d61632d736861323536000000000000000000000000000002aabb0001cc"
+        }
+      ]
+    },
+    {
+      "name": "rr_null",
+      "group": "types",
+      "zone": "$ORIGIN Example.\nrr 73 IN NULL \\# 3 010203\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 10,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "010203"
+        }
+      ]
+    },
+    {
+      "name": "rr_opt",
+      "group": "types",
+      "zone": "$ORIGIN Example.\nrr 73 IN OPT \\# 0\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 41,
+          "class": 1,
+          "ttl": 73,
+          "rdata": ""
+        }
+      ]
+    },
+    {
+      "name": "rr_atma",
+      "group": "types",
+      "zone": "$ORIGIN Example.\nrr 73 IN ATMA \\# 3 010203\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 34,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "010203"
+        }
+      ]
+    },
+    {
+      "name": "rr_unspec",
+      "group": "types",
+      "zone": "$ORIGIN Example.\nrr 73 IN UNSPEC \\# 2 AABB\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 103,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "aabb"
+        }
+      ]
+    },
+    {
+      "name": "rr_nxname",
+      "group": "types",
+      "zone": "$ORIGIN Example.\nrr 73 IN NXNAME \\# 0\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 128,
+          "class": 1,
+          "ttl": 73,
+          "rdata": ""
+        }
+      ]
+    },
+    {
+      "name": "rr_type65000",
+      "group": "types",
+      "zone": "$ORIGIN Example.\nrr 73 IN TYPE65000 \\# 6 AB CD EF 01 2345\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 65000,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "abcdef012345"
+        }
+      ]
+    },
+    {
+      "name": "ttl_inheritance",
+      "group": "header",
+      "zone": "a. 17 A 192.0.2.1\nb. A 192.0.2.2\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "a.",
+          "owner_wire": "016100",
+          "type": 1,
+          "class": 1,
+          "ttl": 17,
+          "rdata": "c0000201"
+        },
+        {
+          "owner": "b.",
+          "owner_wire": "016200",
+          "type": 1,
+          "class": 1,
+          "ttl": 17,
+          "rdata": "c0000202"
+        }
+      ]
+    },
+    {
+      "name": "ttl_directive_stays_default",
+      "group": "header",
+      "zone": "$TTL 42\na. 17 A 192.0.2.1\nb. A 192.0.2.2\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "a.",
+          "owner_wire": "016100",
+          "type": 1,
+          "class": 1,
+          "ttl": 17,
+          "rdata": "c0000201"
+        },
+        {
+          "owner": "b.",
+          "owner_wire": "016200",
+          "type": 1,
+          "class": 1,
+          "ttl": 42,
+          "rdata": "c0000202"
+        }
+      ]
+    },
+    {
+      "name": "origin_relative_and_class_order",
+      "group": "header",
+      "zone": "$ORIGIN example.\n$TTL 1h2m3s\n@ CH TXT \"chaos\"\nchild 10 HS A 192.0.2.1\n  CLASS32 11 TYPE65000 \\# 1 FF\n$ORIGIN sub\nwww IN A 192.0.2.2\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "example.",
+          "owner_wire": "076578616d706c6500",
+          "type": 16,
+          "class": 3,
+          "ttl": 3723,
+          "rdata": "056368616f73"
+        },
+        {
+          "owner": "child.example.",
+          "owner_wire": "056368696c64076578616d706c6500",
+          "type": 1,
+          "class": 4,
+          "ttl": 10,
+          "rdata": "c0000201"
+        },
+        {
+          "owner": "child.example.",
+          "owner_wire": "056368696c64076578616d706c6500",
+          "type": 65000,
+          "class": 32,
+          "ttl": 11,
+          "rdata": "ff"
+        },
+        {
+          "owner": "www.sub.example.",
+          "owner_wire": "0377777703737562076578616d706c6500",
+          "type": 1,
+          "class": 1,
+          "ttl": 3723,
+          "rdata": "c0000202"
+        }
+      ]
+    },
+    {
+      "name": "multiline_owner_order",
+      "group": "header",
+      "zone": "$ORIGIN example.\n@ 17 SOA ns hostmaster (42 10 20 30 40)\nwww 99 A 192.0.2.1\n A 192.0.2.2\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "example.",
+          "owner_wire": "076578616d706c6500",
+          "type": 6,
+          "class": 1,
+          "ttl": 17,
+          "rdata": "026e73076578616d706c65000a686f73746d6173746572076578616d706c65000000002a0000000a000000140000001e00000028"
+        },
+        {
+          "owner": "www.example.",
+          "owner_wire": "03777777076578616d706c6500",
+          "type": 1,
+          "class": 1,
+          "ttl": 99,
+          "rdata": "c0000201"
+        },
+        {
+          "owner": "www.example.",
+          "owner_wire": "03777777076578616d706c6500",
+          "type": 1,
+          "class": 1,
+          "ttl": 99,
+          "rdata": "c0000202"
+        }
+      ]
+    },
+    {
+      "name": "raw_names",
+      "group": "header",
+      "zone": "$ORIGIN example.\na\\046b\\128 99 RP user\\046name text\\255\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "a\\046b\\128.example.",
+          "owner_wire": "04612e6280076578616d706c6500",
+          "type": 17,
+          "class": 1,
+          "ttl": 99,
+          "rdata": "09757365722e6e616d65076578616d706c65000574657874ff076578616d706c6500"
+        }
+      ]
+    },
+    {
+      "name": "unicode_names",
+      "group": "header",
+      "zone": "$ORIGIN example.\n中文 99 DNAME 目标\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "中文.example.",
+          "owner_wire": "06e4b8ade69687076578616d706c6500",
+          "type": 39,
+          "class": 1,
+          "ttl": 99,
+          "rdata": "06e79baee6a087076578616d706c6500"
+        }
+      ]
+    },
+    {
+      "name": "generate_simple",
+      "group": "generate",
+      "zone": "$ORIGIN example.\n$GENERATE 1-3 host$ A 192.0.2.$\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "host1.example.",
+          "owner_wire": "05686f737431076578616d706c6500",
+          "type": 1,
+          "class": 1,
+          "ttl": 3600,
+          "rdata": "c0000201"
+        },
+        {
+          "owner": "host2.example.",
+          "owner_wire": "05686f737432076578616d706c6500",
+          "type": 1,
+          "class": 1,
+          "ttl": 3600,
+          "rdata": "c0000202"
+        },
+        {
+          "owner": "host3.example.",
+          "owner_wire": "05686f737433076578616d706c6500",
+          "type": 1,
+          "class": 1,
+          "ttl": 3600,
+          "rdata": "c0000203"
+        }
+      ]
+    },
+    {
+      "name": "generate_modifiers",
+      "group": "generate",
+      "zone": "$ORIGIN example.\n$GENERATE 128-130/2 host${-128,4,d} 99 IN TXT \"dec=$ oct=${0,4,o} hex=${0,4,x} HEX=${0,4,X} dollar=$$ escaped=\\$\"\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "host0000.example.",
+          "owner_wire": "08686f737430303030076578616d706c6500",
+          "type": 16,
+          "class": 1,
+          "ttl": 99,
+          "rdata": "356465633d313238206f63743d30323030206865783d30303830204845583d3030383020646f6c6c61723d2420657363617065643d24"
+        },
+        {
+          "owner": "host0002.example.",
+          "owner_wire": "08686f737430303032076578616d706c6500",
+          "type": 16,
+          "class": 1,
+          "ttl": 99,
+          "rdata": "356465633d313330206f63743d30323032206865783d30303832204845583d3030383220646f6c6c61723d2420657363617065643d24"
+        }
+      ]
+    },
+    {
+      "name": "generate_subparser_state",
+      "group": "generate",
+      "zone": "$ORIGIN example.\n$TTL 77\nparent 55 A 192.0.2.1\n$GENERATE 1-2 host$ A 192.0.2.$\n A 192.0.2.9\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "parent.example.",
+          "owner_wire": "06706172656e74076578616d706c6500",
+          "type": 1,
+          "class": 1,
+          "ttl": 55,
+          "rdata": "c0000201"
+        },
+        {
+          "owner": "host1.example.",
+          "owner_wire": "05686f737431076578616d706c6500",
+          "type": 1,
+          "class": 1,
+          "ttl": 3600,
+          "rdata": "c0000201"
+        },
+        {
+          "owner": "host2.example.",
+          "owner_wire": "05686f737432076578616d706c6500",
+          "type": 1,
+          "class": 1,
+          "ttl": 3600,
+          "rdata": "c0000202"
+        },
+        {
+          "owner": "parent.example.",
+          "owner_wire": "06706172656e74076578616d706c6500",
+          "type": 1,
+          "class": 1,
+          "ttl": 77,
+          "rdata": "c0000209"
+        }
+      ]
+    },
+    {
+      "name": "rfc3597_known",
+      "group": "rfc3597",
+      "zone": "x. CLASS1 TYPE1 \\# 4 C0000201\ny. A \\# 4 C0000202\nz. CLASS32 TYPE731 \\# 6 abcd (ef 01 23 45)\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "x.",
+          "owner_wire": "017800",
+          "type": 1,
+          "class": 1,
+          "ttl": 3600,
+          "rdata": "c0000201"
+        },
+        {
+          "owner": "y.",
+          "owner_wire": "017900",
+          "type": 1,
+          "class": 1,
+          "ttl": 3600,
+          "rdata": "c0000202"
+        },
+        {
+          "owner": "z.",
+          "owner_wire": "017a00",
+          "type": 731,
+          "class": 32,
+          "ttl": 3600,
+          "rdata": "abcdef012345"
+        }
+      ]
+    },
+    {
+      "name": "rfc3597_empty",
+      "group": "rfc3597",
+      "zone": "x. HS TYPE62347 \\# 0\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "x.",
+          "owner_wire": "017800",
+          "type": 62347,
+          "class": 4,
+          "ttl": 3600,
+          "rdata": ""
+        }
+      ]
+    },
+    {
+      "name": "no_initial_origin",
+      "group": "error",
+      "zone": "relative A 192.0.2.1\n",
+      "error": true,
+      "records": []
+    },
+    {
+      "name": "no_initial_at",
+      "group": "error",
+      "zone": "@ A 192.0.2.1\n",
+      "error": true,
+      "records": []
+    },
+    {
+      "name": "include_disabled",
+      "group": "error",
+      "zone": "$INCLUDE /a-file-that-must-never-be-read\n",
+      "error": true,
+      "records": []
+    },
+    {
+      "name": "generate_include_disabled",
+      "group": "error",
+      "zone": "$ORIGIN example.\n$GENERATE 0-1 $$INCLUDE /a-file-that-must-never-be-read\n",
+      "error": true,
+      "records": []
+    },
+    {
+      "name": "generate_nested_disabled",
+      "group": "error",
+      "zone": "$GENERATE 0-1 $$GENERATE 0-1 x$ A 192.0.2.1\n",
+      "error": true,
+      "records": []
+    },
+    {
+      "name": "generate_zero_step",
+      "group": "error",
+      "zone": "$GENERATE 0-1/0 x$ A 192.0.2.1\n",
+      "error": true,
+      "records": []
+    },
+    {
+      "name": "generate_descending",
+      "group": "error",
+      "zone": "$GENERATE 2-1 x$ A 192.0.2.1\n",
+      "error": true,
+      "records": []
+    },
+    {
+      "name": "generate_too_many",
+      "group": "error",
+      "zone": "$GENERATE 0-65536 x$ A 192.0.2.1\n",
+      "error": true,
+      "records": []
+    },
+    {
+      "name": "generate_negative_offset",
+      "group": "error",
+      "zone": "$GENERATE 0-1 x${-1} A 192.0.2.1\n",
+      "error": true,
+      "records": []
+    },
+    {
+      "name": "generate_offset_overflow",
+      "group": "error",
+      "zone": "$GENERATE 0-1 x${2147483647} A 192.0.2.1\n",
+      "error": true,
+      "records": []
+    },
+    {
+      "name": "generate_width_overflow",
+      "group": "error",
+      "zone": "$GENERATE 0-1 x${0,256,d} A 192.0.2.1\n",
+      "error": true,
+      "records": []
+    },
+    {
+      "name": "generate_nibble_unsupported_by_go",
+      "group": "error",
+      "zone": "$GENERATE 0-1 x${0,4,n} A 192.0.2.1\n",
+      "error": true,
+      "records": []
+    },
+    {
+      "name": "unknown_plain_rejected",
+      "group": "error",
+      "zone": "x. TYPE65000 random\n",
+      "error": true,
+      "records": []
+    },
+    {
+      "name": "rfc3597_length",
+      "group": "error",
+      "zone": "x. TYPE65000 \\# 4 ABCD\n",
+      "error": true,
+      "records": []
+    },
+    {
+      "name": "rfc3597_known_short",
+      "group": "error",
+      "zone": "x. TYPE1 \\# 1 00\n",
+      "error": true,
+      "records": []
+    },
+    {
+      "name": "type_overflow",
+      "group": "error",
+      "zone": "x. TYPE65536 \\# 0\n",
+      "error": true,
+      "records": []
+    },
+    {
+      "name": "class_overflow",
+      "group": "error",
+      "zone": "x. CLASS65536 A 192.0.2.1\n",
+      "error": true,
+      "records": []
+    },
+    {
+      "name": "ttl_overflow",
+      "group": "error",
+      "zone": "x. 4294967296 A 192.0.2.1\n",
+      "error": true,
+      "records": []
+    },
+    {
+      "name": "apl_host_bits",
+      "group": "error",
+      "zone": "x. APL 1:192.0.2.1/24\n",
+      "error": true,
+      "records": []
+    },
+    {
+      "name": "uri_multiple_strings",
+      "group": "error",
+      "zone": "x. URI 1 2 \"a\" \"b\"\n",
+      "error": true,
+      "records": []
+    },
+    {
+      "name": "loc_out_of_range",
+      "group": "error",
+      "zone": "x. LOC 91 N 0 E 0m\n",
+      "error": true,
+      "records": []
+    },
+    {
+      "name": "generic_a",
+      "group": "rfc3597",
+      "zone": "rr.Example. 73 CLASS1 TYPE1 \\# 4 c0000201\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 1,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "c0000201"
+        }
+      ]
+    },
+    {
+      "name": "generic_aaaa",
+      "group": "rfc3597",
+      "zone": "rr.Example. 73 CLASS1 TYPE28 \\# 16 20010db8000000000000000000000001\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 28,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "20010db8000000000000000000000001"
+        }
+      ]
+    },
+    {
+      "name": "generic_ns",
+      "group": "rfc3597",
+      "zone": "rr.Example. 73 CLASS1 TYPE2 \\# 12 026e73074578616d706c6500\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 2,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "026e73074578616d706c6500"
+        }
+      ]
+    },
+    {
+      "name": "generic_md",
+      "group": "rfc3597",
+      "zone": "rr.Example. 73 CLASS1 TYPE3 \\# 14 046d61696c074578616d706c6500\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 3,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "046d61696c074578616d706c6500"
+        }
+      ]
+    },
+    {
+      "name": "generic_mf",
+      "group": "rfc3597",
+      "zone": "rr.Example. 73 CLASS1 TYPE4 \\# 14 046d61696c074578616d706c6500\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 4,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "046d61696c074578616d706c6500"
+        }
+      ]
+    },
+    {
+      "name": "generic_cname",
+      "group": "rfc3597",
+      "zone": "rr.Example. 73 CLASS1 TYPE5 \\# 16 06746172676574074578616d706c6500\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 5,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "06746172676574074578616d706c6500"
+        }
+      ]
+    },
+    {
+      "name": "generic_soa",
+      "group": "rfc3597",
+      "zone": "rr.Example. 73 CLASS1 TYPE6 \\# 52 026e73074578616d706c65000a686f73746d6173746572074578616d706c65000000002a00000e1000001c200003f480000000f0\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 6,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "026e73074578616d706c65000a686f73746d6173746572074578616d706c65000000002a00000e1000001c200003f480000000f0"
+        }
+      ]
+    },
+    {
+      "name": "generic_mb",
+      "group": "rfc3597",
+      "zone": "rr.Example. 73 CLASS1 TYPE7 \\# 14 046d61696c074578616d706c6500\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 7,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "046d61696c074578616d706c6500"
+        }
+      ]
+    },
+    {
+      "name": "generic_mg",
+      "group": "rfc3597",
+      "zone": "rr.Example. 73 CLASS1 TYPE8 \\# 15 0567726f7570074578616d706c6500\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 8,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "0567726f7570074578616d706c6500"
+        }
+      ]
+    },
+    {
+      "name": "generic_mr",
+      "group": "rfc3597",
+      "zone": "rr.Example. 73 CLASS1 TYPE9 \\# 17 076e65776d61696c074578616d706c6500\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 9,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "076e65776d61696c074578616d706c6500"
+        }
+      ]
+    },
+    {
+      "name": "generic_ptr",
+      "group": "rfc3597",
+      "zone": "rr.Example. 73 CLASS1 TYPE12 \\# 17 07706f696e746572074578616d706c6500\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 12,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "07706f696e746572074578616d706c6500"
+        }
+      ]
+    },
+    {
+      "name": "generic_nsapptr",
+      "group": "rfc3597",
+      "zone": "rr.Example. 73 CLASS1 TYPE23 \\# 17 07706f696e746572074578616d706c6500\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 23,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "07706f696e746572074578616d706c6500"
+        }
+      ]
+    },
+    {
+      "name": "generic_mx",
+      "group": "rfc3597",
+      "zone": "rr.Example. 73 CLASS1 TYPE15 \\# 16 000a046d61696c074578616d706c6500\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 15,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "000a046d61696c074578616d706c6500"
+        }
+      ]
+    },
+    {
+      "name": "generic_afsdb",
+      "group": "rfc3597",
+      "zone": "rr.Example. 73 CLASS1 TYPE18 \\# 15 000103616673074578616d706c6500\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 18,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "000103616673074578616d706c6500"
+        }
+      ]
+    },
+    {
+      "name": "generic_rt",
+      "group": "rfc3597",
+      "zone": "rr.Example. 73 CLASS1 TYPE21 \\# 18 000206726f75746572074578616d706c6500\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 21,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "000206726f75746572074578616d706c6500"
+        }
+      ]
+    },
+    {
+      "name": "generic_kx",
+      "group": "rfc3597",
+      "zone": "rr.Example. 73 CLASS1 TYPE36 \\# 20 00030865786368616e6765074578616d706c6500\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 36,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "00030865786368616e6765074578616d706c6500"
+        }
+      ]
+    },
+    {
+      "name": "generic_lp",
+      "group": "rfc3597",
+      "zone": "rr.Example. 73 CLASS1 TYPE107 \\# 19 0004076c6f6361746f72074578616d706c6500\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 107,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "0004076c6f6361746f72074578616d706c6500"
+        }
+      ]
+    },
+    {
+      "name": "generic_minfo",
+      "group": "rfc3597",
+      "zone": "rr.Example. 73 CLASS1 TYPE14 \\# 30 05726d61696c074578616d706c650005656d61696c074578616d706c6500\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 14,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "05726d61696c074578616d706c650005656d61696c074578616d706c6500"
+        }
+      ]
+    },
+    {
+      "name": "generic_rp",
+      "group": "rfc3597",
+      "zone": "rr.Example. 73 CLASS1 TYPE17 \\# 33 0a686f73746d6173746572074578616d706c650003747874074578616d706c6500\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 17,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "0a686f73746d6173746572074578616d706c650003747874074578616d706c6500"
+        }
+      ]
+    },
+    {
+      "name": "generic_talink",
+      "group": "rfc3597",
+      "zone": "rr.Example. 73 CLASS1 TYPE58 \\# 32 0870726576696f7573074578616d706c6500046e657874074578616d706c6500\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 58,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "0870726576696f7573074578616d706c6500046e657874074578616d706c6500"
+        }
+      ]
+    },
+    {
+      "name": "generic_dname",
+      "group": "rfc3597",
+      "zone": "rr.Example. 73 CLASS1 TYPE39 \\# 18 087265646972656374074578616d706c6500\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 39,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "087265646972656374074578616d706c6500"
+        }
+      ]
+    },
+    {
+      "name": "generic_px",
+      "group": "rfc3597",
+      "zone": "rr.Example. 73 CLASS1 TYPE26 \\# 35 0005066d6170383232074578616d706c6500076d617078343030074578616d706c6500\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 26,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "0005066d6170383232074578616d706c6500076d617078343030074578616d706c6500"
+        }
+      ]
+    },
+    {
+      "name": "generic_txt",
+      "group": "rfc3597",
+      "zone": "rr.Example. 73 CLASS1 TYPE16 \\# 9 0568656c6c6f0280ff\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 16,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "0568656c6c6f0280ff"
+        }
+      ]
+    },
+    {
+      "name": "generic_spf",
+      "group": "rfc3597",
+      "zone": "rr.Example. 73 CLASS1 TYPE99 \\# 12 0b763d73706631202d616c6c\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 99,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "0b763d73706631202d616c6c"
+        }
+      ]
+    },
+    {
+      "name": "generic_avc",
+      "group": "rfc3597",
+      "zone": "rr.Example. 73 CLASS1 TYPE258 \\# 5 0464617461\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 258,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "0464617461"
+        }
+      ]
+    },
+    {
+      "name": "generic_ninfo",
+      "group": "rfc3597",
+      "zone": "rr.Example. 73 CLASS1 TYPE56 \\# 10 0464617461046d6f7265\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 56,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "0464617461046d6f7265"
+        }
+      ]
+    },
+    {
+      "name": "generic_resinfo",
+      "group": "rfc3597",
+      "zone": "rr.Example. 73 CLASS1 TYPE261 \\# 16 08716e616d656d696e06657874657272\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 261,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "08716e616d656d696e06657874657272"
+        }
+      ]
+    },
+    {
+      "name": "generic_uinfo",
+      "group": "rfc3597",
+      "zone": "rr.Example. 73 CLASS1 TYPE100 \\# 6 056669727374\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 100,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "056669727374"
+        }
+      ]
+    },
+    {
+      "name": "generic_hinfo",
+      "group": "rfc3597",
+      "zone": "rr.Example. 73 CLASS1 TYPE13 \\# 18 086370752061726368086f73206578747261\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 13,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "086370752061726368086f73206578747261"
+        }
+      ]
+    },
+    {
+      "name": "generic_isdn",
+      "group": "rfc3597",
+      "zone": "rr.Example. 73 CLASS1 TYPE20 \\# 20 0f31353038363230323830303332313703303034\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 20,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "0f31353038363230323830303332313703303034"
+        }
+      ]
+    },
+    {
+      "name": "generic_x25",
+      "group": "rfc3597",
+      "zone": "rr.Example. 73 CLASS1 TYPE19 \\# 13 0c333131303631373030393536\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 19,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "0c333131303631373030393536"
+        }
+      ]
+    },
+    {
+      "name": "generic_gpos",
+      "group": "rfc3597",
+      "zone": "rr.Example. 73 CLASS1 TYPE27 \\# 23 082d33322e36383832083131362e383635320431302e30\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 27,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "082d33322e36383832083131362e383635320431302e30"
+        }
+      ]
+    },
+    {
+      "name": "generic_srv",
+      "group": "rfc3597",
+      "zone": "rr.Example. 73 CLASS1 TYPE33 \\# 23 0001000201bb0773657276696365074578616d706c6500\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 33,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "0001000201bb0773657276696365074578616d706c6500"
+        }
+      ]
+    },
+    {
+      "name": "generic_naptr",
+      "group": "rfc3597",
+      "zone": "rr.Example. 73 CLASS1 TYPE35 \\# 63 0064000a0155074532552b7369701b215e2e2a24217369703a696e666f406578616d706c652e636f6d210b7265706c6163656d656e74074578616d706c6500\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 35,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "0064000a0155074532552b7369701b215e2e2a24217369703a696e666f406578616d706c652e636f6d210b7265706c6163656d656e74074578616d706c6500"
+        }
+      ]
+    },
+    {
+      "name": "generic_uri",
+      "group": "rfc3597",
+      "zone": "rr.Example. 73 CLASS1 TYPE256 \\# 25 000a000168747470733a2f2f6578616d706c652e636f6d2f80\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 256,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "000a000168747470733a2f2f6578616d706c652e636f6d2f80"
+        }
+      ]
+    },
+    {
+      "name": "generic_caa",
+      "group": "rfc3597",
+      "zone": "rr.Example. 73 CLASS1 TYPE257 \\# 30 8005697373756563612e6578616d706c653b206163636f756e743d313233\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 257,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "8005697373756563612e6578616d706c653b206163636f756e743d313233"
+        }
+      ]
+    },
+    {
+      "name": "generic_dnskey",
+      "group": "rfc3597",
+      "zone": "rr.Example. 73 CLASS1 TYPE48 \\# 8 0101030801020304\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 48,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "0101030801020304"
+        }
+      ]
+    },
+    {
+      "name": "generic_cdnskey",
+      "group": "rfc3597",
+      "zone": "rr.Example. 73 CLASS1 TYPE60 \\# 5 0000030000\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 60,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "0000030000"
+        }
+      ]
+    },
+    {
+      "name": "generic_key",
+      "group": "rfc3597",
+      "zone": "rr.Example. 73 CLASS1 TYPE25 \\# 8 0100030801020304\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 25,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "0100030801020304"
+        }
+      ]
+    },
+    {
+      "name": "generic_rkey",
+      "group": "rfc3597",
+      "zone": "rr.Example. 73 CLASS1 TYPE57 \\# 8 0100030801020304\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 57,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "0100030801020304"
+        }
+      ]
+    },
+    {
+      "name": "generic_ds",
+      "group": "rfc3597",
+      "zone": "rr.Example. 73 CLASS1 TYPE43 \\# 8 30390802aabbccdd\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 43,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "30390802aabbccdd"
+        }
+      ]
+    },
+    {
+      "name": "generic_cds",
+      "group": "rfc3597",
+      "zone": "rr.Example. 73 CLASS1 TYPE59 \\# 5 0000000000\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 59,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "0000000000"
+        }
+      ]
+    },
+    {
+      "name": "generic_dlv",
+      "group": "rfc3597",
+      "zone": "rr.Example. 73 CLASS1 TYPE32769 \\# 8 30390802aabbccdd\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 32769,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "30390802aabbccdd"
+        }
+      ]
+    },
+    {
+      "name": "generic_ta",
+      "group": "rfc3597",
+      "zone": "rr.Example. 73 CLASS1 TYPE32768 \\# 8 30390802aabbccdd\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 32768,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "30390802aabbccdd"
+        }
+      ]
+    },
+    {
+      "name": "generic_rrsig",
+      "group": "rfc3597",
+      "zone": "rr.Example. 73 CLASS1 TYPE46 \\# 38 0001080200000e1070dbd8806955b9003039067369676e6572074578616d706c650001020304\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 46,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "0001080200000e1070dbd8806955b9003039067369676e6572074578616d706c650001020304"
+        }
+      ]
+    },
+    {
+      "name": "generic_sig",
+      "group": "rfc3597",
+      "zone": "rr.Example. 73 CLASS1 TYPE24 \\# 38 0001080200000e10773594006b49d2003039067369676e6572074578616d706c650001020304\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 24,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "0001080200000e10773594006b49d2003039067369676e6572074578616d706c650001020304"
+        }
+      ]
+    },
+    {
+      "name": "generic_nsec",
+      "group": "rfc3597",
+      "zone": "rr.Example. 73 CLASS1 TYPE47 \\# 60 046e657874074578616d706c6500000762000000000380010140ff200000000000000000000000000000000000000000000000000000000000000002\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 47,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "046e657874074578616d706c6500000762000000000380010140ff200000000000000000000000000000000000000000000000000000000000000002"
+        }
+      ]
+    },
+    {
+      "name": "generic_nxt",
+      "group": "rfc3597",
+      "zone": "rr.Example. 73 CLASS1 TYPE30 \\# 17 046e657874074578616d706c6500000162\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 30,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "046e657874074578616d706c6500000162"
+        }
+      ]
+    },
+    {
+      "name": "generic_nsec3",
+      "group": "rfc3597",
+      "zone": "rr.Example. 73 CLASS1 TYPE50 \\# 31 0100000a02aabb140000000000000000000000000000000000000000000162\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 50,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "0100000a02aabb140000000000000000000000000000000000000000000162"
+        }
+      ]
+    },
+    {
+      "name": "generic_nsec3param",
+      "group": "rfc3597",
+      "zone": "rr.Example. 73 CLASS1 TYPE51 \\# 5 0100000a00\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 51,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "0100000a00"
+        }
+      ]
+    },
+    {
+      "name": "generic_tlsa",
+      "group": "rfc3597",
+      "zone": "rr.Example. 73 CLASS1 TYPE52 \\# 7 030101aabbccdd\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 52,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "030101aabbccdd"
+        }
+      ]
+    },
+    {
+      "name": "generic_smimea",
+      "group": "rfc3597",
+      "zone": "rr.Example. 73 CLASS1 TYPE53 \\# 7 030101aabbccdd\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 53,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "030101aabbccdd"
+        }
+      ]
+    },
+    {
+      "name": "generic_sshfp",
+      "group": "rfc3597",
+      "zone": "rr.Example. 73 CLASS1 TYPE44 \\# 6 0101aabbccdd\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 44,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "0101aabbccdd"
+        }
+      ]
+    },
+    {
+      "name": "generic_cert",
+      "group": "rfc3597",
+      "zone": "rr.Example. 73 CLASS1 TYPE37 \\# 9 000130390801020304\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 37,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "000130390801020304"
+        }
+      ]
+    },
+    {
+      "name": "generic_openpgpkey",
+      "group": "rfc3597",
+      "zone": "rr.Example. 73 CLASS1 TYPE61 \\# 4 01020304\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 61,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "01020304"
+        }
+      ]
+    },
+    {
+      "name": "generic_dhcid",
+      "group": "rfc3597",
+      "zone": "rr.Example. 73 CLASS1 TYPE49 \\# 4 01020304\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 49,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "01020304"
+        }
+      ]
+    },
+    {
+      "name": "generic_zonemd",
+      "group": "rfc3597",
+      "zone": "rr.Example. 73 CLASS1 TYPE63 \\# 10 0000002a0101aabbccdd\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 63,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "0000002a0101aabbccdd"
+        }
+      ]
+    },
+    {
+      "name": "generic_csync",
+      "group": "rfc3597",
+      "zone": "rr.Example. 73 CLASS1 TYPE62 \\# 15 0000002a0003000460000008010140\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 62,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "0000002a0003000460000008010140"
+        }
+      ]
+    },
+    {
+      "name": "generic_hip",
+      "group": "rfc3597",
+      "zone": "rr.Example. 73 CLASS1 TYPE55 \\# 53 04020004aabbccdd010203040a72656e64657a766f7573074578616d706c65000b72656e64657a766f757332074578616d706c6500\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 55,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "04020004aabbccdd010203040a72656e64657a766f7573074578616d706c65000b72656e64657a766f757332074578616d706c6500"
+        }
+      ]
+    },
+    {
+      "name": "generic_ipseckey",
+      "group": "rfc3597",
+      "zone": "rr.Example. 73 CLASS1 TYPE45 \\# 24 0a03020767617465776179074578616d706c650001020304\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 45,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "0a03020767617465776179074578616d706c650001020304"
+        }
+      ]
+    },
+    {
+      "name": "generic_amtrelay",
+      "group": "rfc3597",
+      "zone": "rr.Example. 73 CLASS1 TYPE260 \\# 19 0a030767617465776179074578616d706c6500\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 260,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "0a030767617465776179074578616d706c6500"
+        }
+      ]
+    },
+    {
+      "name": "generic_loc",
+      "group": "rfc3597",
+      "zone": "rr.Example. 73 CLASS1 TYPE29 \\# 16 00121613881b809d65bd466c00989a81\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 29,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "00121613881b809d65bd466c00989a81"
+        }
+      ]
+    },
+    {
+      "name": "generic_eui48",
+      "group": "rfc3597",
+      "zone": "rr.Example. 73 CLASS1 TYPE108 \\# 6 000102030405\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 108,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "000102030405"
+        }
+      ]
+    },
+    {
+      "name": "generic_eui64",
+      "group": "rfc3597",
+      "zone": "rr.Example. 73 CLASS1 TYPE109 \\# 8 0001020304050607\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 109,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "0001020304050607"
+        }
+      ]
+    },
+    {
+      "name": "generic_nid",
+      "group": "rfc3597",
+      "zone": "rr.Example. 73 CLASS1 TYPE104 \\# 10 000a0001000200030004\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 104,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "000a0001000200030004"
+        }
+      ]
+    },
+    {
+      "name": "generic_l32",
+      "group": "rfc3597",
+      "zone": "rr.Example. 73 CLASS1 TYPE105 \\# 6 000ac0000202\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 105,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "000ac0000202"
+        }
+      ]
+    },
+    {
+      "name": "generic_l64",
+      "group": "rfc3597",
+      "zone": "rr.Example. 73 CLASS1 TYPE106 \\# 10 000a0001000200030004\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 106,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "000a0001000200030004"
+        }
+      ]
+    },
+    {
+      "name": "generic_uid",
+      "group": "rfc3597",
+      "zone": "rr.Example. 73 CLASS1 TYPE101 \\# 4 0001e240\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 101,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "0001e240"
+        }
+      ]
+    },
+    {
+      "name": "generic_gid",
+      "group": "rfc3597",
+      "zone": "rr.Example. 73 CLASS1 TYPE102 \\# 4 0009fbf1\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 102,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "0009fbf1"
+        }
+      ]
+    },
+    {
+      "name": "generic_eid",
+      "group": "rfc3597",
+      "zone": "rr.Example. 73 CLASS1 TYPE31 \\# 4 aabbccdd\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 31,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "aabbccdd"
+        }
+      ]
+    },
+    {
+      "name": "generic_nimloc",
+      "group": "rfc3597",
+      "zone": "rr.Example. 73 CLASS1 TYPE32 \\# 4 aabbccdd\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 32,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "aabbccdd"
+        }
+      ]
+    },
+    {
+      "name": "generic_apl",
+      "group": "rfc3597",
+      "zone": "rr.Example. 73 CLASS1 TYPE42 \\# 15 00011803c000020002208420010db8\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 42,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "00011803c000020002208420010db8"
+        }
+      ]
+    },
+    {
+      "name": "generic_svcb",
+      "group": "rfc3597",
+      "zone": "rr.Example. 73 CLASS1 TYPE64 \\# 112 000106746172676574074578616d706c65000000000400010003000100060268320268330003000201bb00040008c0000201c000020200050004010203040006001020010db8000000000000000000000001000700102f646e732d71756572797b3f646e737d00080000ff78000280ff\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 64,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "000106746172676574074578616d706c65000000000400010003000100060268320268330003000201bb00040008c0000201c000020200050004010203040006001020010db8000000000000000000000001000700102f646e732d71756572797b3f646e737d00080000ff78000280ff"
+        }
+      ]
+    },
+    {
+      "name": "generic_https",
+      "group": "rfc3597",
+      "zone": "rr.Example. 73 CLASS1 TYPE65 \\# 17 000005616c696173074578616d706c6500\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 65,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "000005616c696173074578616d706c6500"
+        }
+      ]
+    },
+    {
+      "name": "generic_tkey",
+      "group": "rfc3597",
+      "zone": "rr.Example. 73 CLASS1 TYPE249 \\# 32 0b686d61632d736861323536000000000000000000000000000002aabb0001cc\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 249,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "0b686d61632d736861323536000000000000000000000000000002aabb0001cc"
+        }
+      ]
+    },
+    {
+      "name": "generic_null",
+      "group": "rfc3597",
+      "zone": "rr.Example. 73 CLASS1 TYPE10 \\# 3 010203\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 10,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "010203"
+        }
+      ]
+    },
+    {
+      "name": "generic_opt",
+      "group": "rfc3597",
+      "zone": "rr.Example. 73 CLASS1 TYPE41 \\# 0 \n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 41,
+          "class": 1,
+          "ttl": 73,
+          "rdata": ""
+        }
+      ]
+    },
+    {
+      "name": "generic_atma",
+      "group": "rfc3597",
+      "zone": "rr.Example. 73 CLASS1 TYPE34 \\# 3 010203\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 34,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "010203"
+        }
+      ]
+    },
+    {
+      "name": "generic_unspec",
+      "group": "rfc3597",
+      "zone": "rr.Example. 73 CLASS1 TYPE103 \\# 2 aabb\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 103,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "aabb"
+        }
+      ]
+    },
+    {
+      "name": "generic_nxname",
+      "group": "rfc3597",
+      "zone": "rr.Example. 73 CLASS1 TYPE128 \\# 0 \n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 128,
+          "class": 1,
+          "ttl": 73,
+          "rdata": ""
+        }
+      ]
+    },
+    {
+      "name": "generic_type65000",
+      "group": "rfc3597",
+      "zone": "rr.Example. 73 CLASS1 TYPE65000 \\# 6 abcdef012345\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 65000,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "abcdef012345"
+        }
+      ]
+    },
+    {
+      "name": "empty_any",
+      "group": "rfc3597",
+      "zone": "empty.Example. 12 IN ANY\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "empty.Example.",
+          "owner_wire": "05656d707479074578616d706c6500",
+          "type": 255,
+          "class": 1,
+          "ttl": 12,
+          "rdata": ""
+        }
+      ]
+    },
+    {
+      "name": "empty_tsig",
+      "group": "rfc3597",
+      "zone": "empty.Example. 12 IN TSIG\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "empty.Example.",
+          "owner_wire": "05656d707479074578616d706c6500",
+          "type": 250,
+          "class": 1,
+          "ttl": 12,
+          "rdata": "00000000000000000000000000000000"
+        }
+      ]
+    },
+    {
+      "name": "empty_axfr",
+      "group": "rfc3597",
+      "zone": "empty.Example. 12 IN AXFR\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "empty.Example.",
+          "owner_wire": "05656d707479074578616d706c6500",
+          "type": 252,
+          "class": 1,
+          "ttl": 12,
+          "rdata": ""
+        }
+      ]
+    },
+    {
+      "name": "empty_ixfr",
+      "group": "rfc3597",
+      "zone": "empty.Example. 12 IN IXFR\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "empty.Example.",
+          "owner_wire": "05656d707479074578616d706c6500",
+          "type": 251,
+          "class": 1,
+          "ttl": 12,
+          "rdata": ""
+        }
+      ]
+    },
+    {
+      "name": "empty_maila",
+      "group": "rfc3597",
+      "zone": "empty.Example. 12 IN MAILA\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "empty.Example.",
+          "owner_wire": "05656d707479074578616d706c6500",
+          "type": 254,
+          "class": 1,
+          "ttl": 12,
+          "rdata": ""
+        }
+      ]
+    },
+    {
+      "name": "empty_mailb",
+      "group": "rfc3597",
+      "zone": "empty.Example. 12 IN MAILB\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "empty.Example.",
+          "owner_wire": "05656d707479074578616d706c6500",
+          "type": 253,
+          "class": 1,
+          "ttl": 12,
+          "rdata": ""
+        }
+      ]
+    },
+    {
+      "name": "empty_none",
+      "group": "error",
+      "zone": "empty.Example. 12 IN NONE\n",
+      "error": true,
+      "records": []
+    },
+    {
+      "name": "empty_reserved",
+      "group": "error",
+      "zone": "empty.Example. 12 IN RESERVED\n",
+      "error": true,
+      "records": []
+    },
+    {
+      "name": "empty_type22",
+      "group": "error",
+      "zone": "empty.Example. 12 IN TYPE22\n",
+      "error": true,
+      "records": []
+    },
+    {
+      "name": "empty_type65535",
+      "group": "error",
+      "zone": "empty.Example. 12 IN TYPE65535\n",
+      "error": true,
+      "records": []
+    },
+    {
+      "name": "loc_short_south_west",
+      "group": "types",
+      "zone": "$ORIGIN Example.\nrr 73 IN LOC 90 S 180 W -100000m\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 29,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "001216136cb0270059604e0000000000"
+        }
+      ]
+    },
+    {
+      "name": "loc_precision_truncation",
+      "group": "types",
+      "zone": "$ORIGIN Example.\nrr 73 IN LOC 1 2 3.999 N 4 5 6.125 E 10.125m .01m .1m 90000000.00m\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 29,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "001011998038d2df80e065cd00989a75"
+        }
+      ]
+    },
+    {
+      "name": "loc_extra_precision_ignored",
+      "group": "types",
+      "zone": "$ORIGIN Example.\nrr 73 IN LOC 1 N 1 E 0 1m 1m 1m ignored\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 29,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "001212128036ee808036ee8000989680"
+        }
+      ]
+    },
+    {
+      "name": "apl_zero_full_negated",
+      "group": "types",
+      "zone": "$ORIGIN Example.\nrr 73 IN APL 1:0.0.0.0/0 !1:192.0.2.255/32 2:::/0 !2:2001:db8::1/128\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 42,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "0001000000012084c00002ff000200000002809020010db8000000000000000000000001"
+        }
+      ]
+    },
+    {
+      "name": "ipseckey_no_gateway",
+      "group": "types",
+      "zone": "$ORIGIN Example.\nrr 73 IN IPSECKEY 10 0 8 . AQID\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 45,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "0a0008010203"
+        }
+      ]
+    },
+    {
+      "name": "ipseckey_v4",
+      "group": "types",
+      "zone": "$ORIGIN Example.\nrr 73 IN IPSECKEY 10 1 8 192.0.2.1 AQID\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 45,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "0a0108c0000201010203"
+        }
+      ]
+    },
+    {
+      "name": "ipseckey_v6",
+      "group": "types",
+      "zone": "$ORIGIN Example.\nrr 73 IN IPSECKEY 10 2 8 2001:db8::1 AQID\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 45,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "0a020820010db8000000000000000000000001010203"
+        }
+      ]
+    },
+    {
+      "name": "amtrelay_v4",
+      "group": "types",
+      "zone": "$ORIGIN Example.\nrr 73 IN AMTRELAY 10 0 1 192.0.2.1\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 260,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "0a01c0000201"
+        }
+      ]
+    },
+    {
+      "name": "amtrelay_v6",
+      "group": "types",
+      "zone": "$ORIGIN Example.\nrr 73 IN AMTRELAY 10 0 2 2001:db8::1\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 260,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "0a0220010db8000000000000000000000001"
+        }
+      ]
+    },
+    {
+      "name": "amtrelay_none",
+      "group": "types",
+      "zone": "$ORIGIN Example.\nrr 73 IN AMTRELAY 10 1 0 .\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 260,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "0a80"
+        }
+      ]
+    },
+    {
+      "name": "rrsig_mnemonic_numeric_times",
+      "group": "types",
+      "zone": "$ORIGIN Example.\nrr 73 IN RRSIG TYPE1 RSASHA256 2 3600 2147483647 1 123 ns AQID\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 46,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "0001080200000e107fffffff00000001007b026e73074578616d706c6500010203"
+        }
+      ]
+    },
+    {
+      "name": "rrsig_before_epoch",
+      "group": "types",
+      "zone": "$ORIGIN Example.\nrr 73 IN RRSIG A 8 2 3600 19690101000000 20500101000000 123 ns AQID\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 46,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "0001080200000e10fe1ecc80967a7600007b026e73074578616d706c6500010203"
+        }
+      ]
+    },
+    {
+      "name": "ds_mnemonic",
+      "group": "types",
+      "zone": "$ORIGIN Example.\nrr 73 IN DS 123 rsasha256 2 AABB\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 43,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "007b0802aabb"
+        }
+      ]
+    },
+    {
+      "name": "key_empty_base64",
+      "group": "types",
+      "zone": "$ORIGIN Example.\nrr 73 IN DNSKEY 0 3 8\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 48,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "00000308"
+        }
+      ]
+    },
+    {
+      "name": "hinfo_single",
+      "group": "types",
+      "zone": "$ORIGIN Example.\nrr 73 IN HINFO \"cpu os\"\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 13,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "03637075026f73"
+        }
+      ]
+    },
+    {
+      "name": "hinfo_one_field",
+      "group": "types",
+      "zone": "$ORIGIN Example.\nrr 73 IN HINFO \"cpu\"\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 13,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "0363707500"
+        }
+      ]
+    },
+    {
+      "name": "hinfo_multiple",
+      "group": "types",
+      "zone": "$ORIGIN Example.\nrr 73 IN HINFO \"cpu\" \"os\" \"tail\"\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 13,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "03637075076f73207461696c"
+        }
+      ]
+    },
+    {
+      "name": "isdn_single",
+      "group": "types",
+      "zone": "$ORIGIN Example.\nrr 73 IN ISDN \"123\"\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 20,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "0331323300"
+        }
+      ]
+    },
+    {
+      "name": "uinfo_ignores_tail",
+      "group": "types",
+      "zone": "$ORIGIN Example.\nrr 73 IN UINFO \"a\" \"b\"\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 100,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "0161"
+        }
+      ]
+    },
+    {
+      "name": "txt_adjacent_quotes",
+      "group": "types",
+      "zone": "$ORIGIN Example.\nrr 73 IN TXT \"a\"\"b\"\"\"\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 16,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "0161016200"
+        }
+      ]
+    },
+    {
+      "name": "txt_quoted_unquoted_adjacency",
+      "group": "types",
+      "zone": "$ORIGIN Example.\nrr 73 IN TXT \"a\"b\"c\"\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 16,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "016101620163"
+        }
+      ]
+    },
+    {
+      "name": "svcb_params_sorted",
+      "group": "types",
+      "zone": "$ORIGIN Example.\nrr 73 IN SVCB 1 svc key65400=\"a\\128\" ohttp port=443 alpn=\"h2,h3\" mandatory=port,alpn\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 64,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "000103737663074578616d706c65000000000400010003000100060268320268330003000201bb00080000ff7800026180"
+        }
+      ]
+    },
+    {
+      "name": "svcb_alias_params_allowed",
+      "group": "types",
+      "zone": "$ORIGIN Example.\nrr 73 IN SVCB 0 svc alpn=h2\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 64,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "000003737663074578616d706c650000010003026832"
+        }
+      ]
+    },
+    {
+      "name": "svcb_empty_values",
+      "group": "types",
+      "zone": "$ORIGIN Example.\nrr 73 IN SVCB 1 svc alpn=\"\" mandatory=\"\" no-default-alpn= ohttp=\"\" ech=\"\" key65400=\"\"\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 64,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "000103737663074578616d706c65000000000000010000000200000005000000080000ff780000"
+        }
+      ]
+    },
+    {
+      "name": "svcb_escaped_alpn",
+      "group": "types",
+      "zone": "$ORIGIN Example.\nrr 73 IN SVCB 1 svc alpn=\"h2\\\\,custom,h3\" key65400=\"space\\032x\\255\"\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 64,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "000103737663074578616d706c65000001000d0968322c637573746f6d026833ff78000873706163652078ff"
+        }
+      ]
+    },
+    {
+      "name": "svcb_hint_trailing_comma",
+      "group": "types",
+      "zone": "$ORIGIN Example.\nrr 73 IN SVCB 1 svc ipv4hint=192.0.2.1, ipv6hint=2001:db8::1,\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 64,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "000103737663074578616d706c650000040004c00002010006001020010db8000000000000000000000001"
+        }
+      ]
+    },
+    {
+      "name": "txt_multiline_quoted",
+      "group": "types",
+      "zone": "$ORIGIN Example.\nrr 73 IN TXT \"one\ntwo\"\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 16,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "076f6e650a74776f"
+        }
+      ]
+    },
+    {
+      "name": "root_origin",
+      "group": "header",
+      "zone": "$ORIGIN .\n@ TXT \"root\"\na NS b\n",
+      "error": false,
+      "records": [
+        {
+          "owner": ".",
+          "owner_wire": "00",
+          "type": 16,
+          "class": 1,
+          "ttl": 3600,
+          "rdata": "04726f6f74"
+        },
+        {
+          "owner": "a.",
+          "owner_wire": "016100",
+          "type": 2,
+          "class": 1,
+          "ttl": 3600,
+          "rdata": "016200"
+        }
+      ]
+    },
+    {
+      "name": "header_reversed_class_ttl",
+      "group": "header",
+      "zone": "a.Example. CH 2h TXT \"a\"\nb.Example. IN TXT \"b\"\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "a.Example.",
+          "owner_wire": "0161074578616d706c6500",
+          "type": 16,
+          "class": 3,
+          "ttl": 7200,
+          "rdata": "0161"
+        },
+        {
+          "owner": "b.Example.",
+          "owner_wire": "0162074578616d706c6500",
+          "type": 16,
+          "class": 1,
+          "ttl": 7200,
+          "rdata": "0162"
+        }
+      ]
+    },
+    {
+      "name": "header_raw_names",
+      "group": "header",
+      "zone": "a\\000b.Example. RP m\\000box.Example. text\\255.Example.\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "a\\000b.Example.",
+          "owner_wire": "03610062074578616d706c6500",
+          "type": 17,
+          "class": 1,
+          "ttl": 3600,
+          "rdata": "056d00626f78074578616d706c65000574657874ff074578616d706c6500"
+        }
+      ]
+    },
+    {
+      "name": "header_max_label",
+      "group": "header",
+      "zone": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.Example. 0 TYPE65000 \\# 0\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.Example.",
+          "owner_wire": "3f616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161074578616d706c6500",
+          "type": 65000,
+          "class": 1,
+          "ttl": 0,
+          "rdata": ""
+        }
+      ]
+    },
+    {
+      "name": "header_comment_crlf",
+      "group": "header",
+      "zone": "$ORIGIN Example.\r\n$TTL 1H30M\r\nrr A 192.0.2.1 ;tail\r\n\tAAAA 2001:db8::1\r\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 1,
+          "class": 1,
+          "ttl": 5400,
+          "rdata": "c0000201"
+        },
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 28,
+          "class": 1,
+          "ttl": 5400,
+          "rdata": "20010db8000000000000000000000001"
+        }
+      ]
+    },
+    {
+      "name": "generate_two_directives",
+      "group": "generate",
+      "zone": "$ORIGIN Example.\n$GENERATE 0-2/2 a$ TXT \"$\"\n$GENERATE 0-1 b${3} TXT \"${0,0}\"\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "a0.Example.",
+          "owner_wire": "026130074578616d706c6500",
+          "type": 16,
+          "class": 1,
+          "ttl": 3600,
+          "rdata": "0130"
+        },
+        {
+          "owner": "a2.Example.",
+          "owner_wire": "026132074578616d706c6500",
+          "type": 16,
+          "class": 1,
+          "ttl": 3600,
+          "rdata": "0132"
+        },
+        {
+          "owner": "b3.Example.",
+          "owner_wire": "026233074578616d706c6500",
+          "type": 16,
+          "class": 1,
+          "ttl": 3600,
+          "rdata": "0130"
+        },
+        {
+          "owner": "b4.Example.",
+          "owner_wire": "026234074578616d706c6500",
+          "type": 16,
+          "class": 1,
+          "ttl": 3600,
+          "rdata": "0131"
+        }
+      ]
+    },
+    {
+      "name": "generate_uppercase_hex",
+      "group": "generate",
+      "zone": "$ORIGIN Example.\n$GENERATE 10-11 n${0,4,X} TXT \"${0,4,x}-${0,4,o}\"\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "n000A.Example.",
+          "owner_wire": "056e30303041074578616d706c6500",
+          "type": 16,
+          "class": 1,
+          "ttl": 3600,
+          "rdata": "09303030612d30303132"
+        },
+        {
+          "owner": "n000B.Example.",
+          "owner_wire": "056e30303042074578616d706c6500",
+          "type": 16,
+          "class": 1,
+          "ttl": 3600,
+          "rdata": "09303030622d30303133"
+        }
+      ]
+    },
+    {
+      "name": "generate_global_origin_is_local",
+      "group": "generate",
+      "zone": "$ORIGIN Example.\n$GENERATE 1-1 $$ORIGIN child$\nnext A 192.0.2.1\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "next.Example.",
+          "owner_wire": "046e657874074578616d706c6500",
+          "type": 1,
+          "class": 1,
+          "ttl": 3600,
+          "rdata": "c0000201"
+        }
+      ]
+    },
+    {
+      "name": "generate_drops_non_special_escape",
+      "group": "generate",
+      "zone": "$ORIGIN Example.\n$GENERATE 1-1 a$ TXT \"a\\xb\"\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "a1.Example.",
+          "owner_wire": "026131074578616d706c6500",
+          "type": 16,
+          "class": 1,
+          "ttl": 3600,
+          "rdata": "026162"
+        }
+      ]
+    },
+    {
+      "name": "generate_int32_limit",
+      "group": "generate",
+      "zone": "$ORIGIN Example.\n$GENERATE 0-1 n${2147483646,0,d} A 192.0.2.1\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "n2147483646.Example.",
+          "owner_wire": "0b6e32313437343833363436074578616d706c6500",
+          "type": 1,
+          "class": 1,
+          "ttl": 3600,
+          "rdata": "c0000201"
+        },
+        {
+          "owner": "n2147483647.Example.",
+          "owner_wire": "0b6e32313437343833363437074578616d706c6500",
+          "type": 1,
+          "class": 1,
+          "ttl": 3600,
+          "rdata": "c0000201"
+        }
+      ]
+    },
+    {
+      "name": "apl_unknown_family",
+      "group": "error",
+      "zone": "$ORIGIN Example.\nrr 73 IN APL 3:192.0.2.0/24\n",
+      "error": true,
+      "records": []
+    },
+    {
+      "name": "apl_family_mismatch",
+      "group": "error",
+      "zone": "$ORIGIN Example.\nrr 73 IN APL 2:192.0.2.0/24\n",
+      "error": true,
+      "records": []
+    },
+    {
+      "name": "loc_latitude_boundary",
+      "group": "error",
+      "zone": "$ORIGIN Example.\nrr 73 IN LOC 90 0 0.001 N 180 E 0\n",
+      "error": true,
+      "records": []
+    },
+    {
+      "name": "loc_longitude_boundary",
+      "group": "error",
+      "zone": "$ORIGIN Example.\nrr 73 IN LOC 0 N 180 0 0.001 E 0\n",
+      "error": true,
+      "records": []
+    },
+    {
+      "name": "loc_missing_seconds",
+      "group": "error",
+      "zone": "$ORIGIN Example.\nrr 73 IN LOC 0 1 N 0 E 0\n",
+      "error": true,
+      "records": []
+    },
+    {
+      "name": "loc_precision_empty_fraction",
+      "group": "error",
+      "zone": "$ORIGIN Example.\nrr 73 IN LOC 0 N 0 E 0 1.\n",
+      "error": true,
+      "records": []
+    },
+    {
+      "name": "loc_precision_negative",
+      "group": "error",
+      "zone": "$ORIGIN Example.\nrr 73 IN LOC 0 N 0 E 0 -1m\n",
+      "error": true,
+      "records": []
+    },
+    {
+      "name": "loc_precision_excess",
+      "group": "error",
+      "zone": "$ORIGIN Example.\nrr 73 IN LOC 0 N 0 E 0 90000000.01m\n",
+      "error": true,
+      "records": []
+    },
+    {
+      "name": "svcb_unknown",
+      "group": "error",
+      "zone": "$ORIGIN Example.\nrr 73 IN SVCB 1 svc unknown=x\n",
+      "error": true,
+      "records": []
+    },
+    {
+      "name": "svcb_registered_numeric",
+      "group": "error",
+      "zone": "$ORIGIN Example.\nrr 73 IN SVCB 1 svc key1=h2\n",
+      "error": true,
+      "records": []
+    },
+    {
+      "name": "svcb_reserved",
+      "group": "error",
+      "zone": "$ORIGIN Example.\nrr 73 IN SVCB 1 svc key65535=x\n",
+      "error": true,
+      "records": []
+    },
+    {
+      "name": "svcb_key_zero",
+      "group": "error",
+      "zone": "$ORIGIN Example.\nrr 73 IN SVCB 1 svc key010=x\n",
+      "error": true,
+      "records": []
+    },
+    {
+      "name": "svcb_bad_port",
+      "group": "error",
+      "zone": "$ORIGIN Example.\nrr 73 IN SVCB 1 svc port=65536\n",
+      "error": true,
+      "records": []
+    },
+    {
+      "name": "svcb_bad_alpn_empty",
+      "group": "error",
+      "zone": "$ORIGIN Example.\nrr 73 IN SVCB 1 svc alpn=h2,,h3\n",
+      "error": true,
+      "records": []
+    },
+    {
+      "name": "svcb_bad_alpn_escape",
+      "group": "error",
+      "zone": "$ORIGIN Example.\nrr 73 IN SVCB 1 svc alpn=\"h2\\\\x\"\n",
+      "error": true,
+      "records": []
+    },
+    {
+      "name": "svcb_no_default_value",
+      "group": "error",
+      "zone": "$ORIGIN Example.\nrr 73 IN SVCB 1 svc no-default-alpn=x\n",
+      "error": true,
+      "records": []
+    },
+    {
+      "name": "svcb_ohttp_value",
+      "group": "error",
+      "zone": "$ORIGIN Example.\nrr 73 IN SVCB 1 svc ohttp=x\n",
+      "error": true,
+      "records": []
+    },
+    {
+      "name": "svcb_ipv4_mapped",
+      "group": "error",
+      "zone": "$ORIGIN Example.\nrr 73 IN SVCB 1 svc ipv4hint=::ffff:192.0.2.1\n",
+      "error": true,
+      "records": []
+    },
+    {
+      "name": "svcb_ipv6_mapped",
+      "group": "error",
+      "zone": "$ORIGIN Example.\nrr 73 IN SVCB 1 svc ipv6hint=::ffff:192.0.2.1\n",
+      "error": true,
+      "records": []
+    },
+    {
+      "name": "svcb_bad_octet_short",
+      "group": "error",
+      "zone": "$ORIGIN Example.\nrr 73 IN SVCB 1 svc key65400=\"\\12\"\n",
+      "error": true,
+      "records": []
+    },
+    {
+      "name": "svcb_bad_octet_overflow",
+      "group": "error",
+      "zone": "$ORIGIN Example.\nrr 73 IN SVCB 1 svc key65400=\"\\256\"\n",
+      "error": true,
+      "records": []
+    },
+    {
+      "name": "svcb_adjacent_pairs",
+      "group": "error",
+      "zone": "$ORIGIN Example.\nrr 73 IN SVCB 1 svc alpn=\"h2\"port=443\n",
+      "error": true,
+      "records": []
+    },
+    {
+      "name": "svcb_quoted_key",
+      "group": "error",
+      "zone": "$ORIGIN Example.\nrr 73 IN SVCB 1 svc \"alpn\"=h2\n",
+      "error": true,
+      "records": []
+    },
+    {
+      "name": "naptr_unquoted_flags",
+      "group": "error",
+      "zone": "$ORIGIN Example.\nrr 73 IN NAPTR 1 2 s \"SIP\" \"\" svc\n",
+      "error": true,
+      "records": []
+    },
+    {
+      "name": "quoted_a",
+      "group": "error",
+      "zone": "$ORIGIN Example.\nrr 73 IN A \"192.0.2.1\"\n",
+      "error": true,
+      "records": []
+    },
+    {
+      "name": "quoted_ns",
+      "group": "error",
+      "zone": "$ORIGIN Example.\nrr 73 IN NS \"ns\"\n",
+      "error": true,
+      "records": []
+    },
+    {
+      "name": "quoted_owner",
+      "group": "error",
+      "zone": "$ORIGIN Example.\n\"rr\" 73 IN TXT \"ok\"\n",
+      "error": true,
+      "records": []
+    },
+    {
+      "name": "rrsig_bad_date",
+      "group": "error",
+      "zone": "$ORIGIN Example.\nrr 73 IN RRSIG A 8 2 1 20251301000000 20250101000000 1 ns AQID\n",
+      "error": true,
+      "records": []
+    },
+    {
+      "name": "rrsig_bad_unicode_time",
+      "group": "error",
+      "zone": "$ORIGIN Example.\nrr 73 IN RRSIG A 8 2 1 中中中中12 1 1 ns AQID\n",
+      "error": true,
+      "records": []
+    },
+    {
+      "name": "extra_a_fields",
+      "group": "error",
+      "zone": "$ORIGIN Example.\nrr 73 IN A 192.0.2.1 tail\n",
+      "error": true,
+      "records": []
+    },
+    {
+      "name": "mx_pref_overflow",
+      "group": "error",
+      "zone": "$ORIGIN Example.\nrr 73 IN MX 65536 ns\n",
+      "error": true,
+      "records": []
+    },
+    {
+      "name": "dnskey_flag_overflow",
+      "group": "error",
+      "zone": "$ORIGIN Example.\nrr 73 IN DNSKEY 65536 3 8 AQID\n",
+      "error": true,
+      "records": []
+    },
+    {
+      "name": "dnskey_protocol_overflow",
+      "group": "error",
+      "zone": "$ORIGIN Example.\nrr 73 IN DNSKEY 1 256 8 AQID\n",
+      "error": true,
+      "records": []
+    },
+    {
+      "name": "tlsa_usage_overflow",
+      "group": "error",
+      "zone": "$ORIGIN Example.\nrr 73 IN TLSA 256 0 1 AABB\n",
+      "error": true,
+      "records": []
+    },
+    {
+      "name": "soa_serial_overflow",
+      "group": "error",
+      "zone": "$ORIGIN Example.\nrr 73 IN SOA ns host 4294967296 1 1 1 1\n",
+      "error": true,
+      "records": []
+    },
+    {
+      "name": "eui_wrong_count",
+      "group": "error",
+      "zone": "$ORIGIN Example.\nrr 73 IN EUI48 00-11-22-33-44\n",
+      "error": true,
+      "records": []
+    },
+    {
+      "name": "ipseckey_gateway_none",
+      "group": "error",
+      "zone": "$ORIGIN Example.\nrr 73 IN IPSECKEY 1 0 8 ns AQID\n",
+      "error": true,
+      "records": []
+    },
+    {
+      "name": "owner_label_long",
+      "group": "error",
+      "zone": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.Example. TXT \"x\"\n",
+      "error": true,
+      "records": []
+    },
+    {
+      "name": "unmatched_parenthesis",
+      "group": "error",
+      "zone": "a.Example. TXT (\"x\"\n",
+      "error": true,
+      "records": []
+    },
+    {
+      "name": "unmatched_quote",
+      "group": "error",
+      "zone": "a.Example. TXT \"x\n",
+      "error": true,
+      "records": []
+    },
+    {
+      "name": "nested_generate_crasher",
+      "group": "error",
+      "zone": "$GENERATE 6-2048 $$GENERATE 6-036160 $$$$ORIGIN \\$",
+      "error": true,
+      "records": []
+    },
+    {
+      "name": "generate_empty_step",
+      "group": "error",
+      "zone": "$GENERATE 1-2/ n$ TXT \"x\"\n",
+      "error": true,
+      "records": []
+    },
+    {
+      "name": "generate_bad_base",
+      "group": "error",
+      "zone": "$GENERATE 1-2 n${0,4,dd} TXT \"x\"\n",
+      "error": true,
+      "records": []
+    },
+    {
+      "name": "generic_key_short_scalar",
+      "group": "error",
+      "zone": "rr.Example. 73 IN TYPE48 \\# 1 00\n",
+      "error": true,
+      "records": []
+    },
+    {
+      "name": "generic_ds_short_scalar",
+      "group": "error",
+      "zone": "rr.Example. 73 IN TYPE43 \\# 1 00\n",
+      "error": true,
+      "records": []
+    },
+    {
+      "name": "generic_signature_short_scalar",
+      "group": "error",
+      "zone": "rr.Example. 73 IN TYPE46 \\# 1 00\n",
+      "error": true,
+      "records": []
+    },
+    {
+      "name": "generic_nsec3_short_iteration",
+      "group": "error",
+      "zone": "rr.Example. 73 IN TYPE50 \\# 3 010000\n",
+      "error": true,
+      "records": []
+    },
+    {
+      "name": "generic_rp_short_name",
+      "group": "error",
+      "zone": "rr.Example. 73 IN TYPE17 \\# 2 036d\n",
+      "error": true,
+      "records": []
+    },
+    {
+      "name": "generic_ns_short_name",
+      "group": "error",
+      "zone": "rr.Example. 73 IN TYPE2 \\# 2 036e\n",
+      "error": true,
+      "records": []
+    },
+    {
+      "name": "generic_mx_short_preference",
+      "group": "error",
+      "zone": "rr.Example. 73 IN TYPE15 \\# 1 01\n",
+      "error": true,
+      "records": []
+    },
+    {
+      "name": "generic_svcb_short_priority",
+      "group": "error",
+      "zone": "rr.Example. 73 IN TYPE64 \\# 1 01\n",
+      "error": true,
+      "records": []
+    },
+    {
+      "name": "generic_svcb_short_port",
+      "group": "error",
+      "zone": "rr.Example. 73 IN TYPE64 \\# 8 0001000003000101\n",
+      "error": true,
+      "records": []
+    },
+    {
+      "name": "generic_nsec_short_bitmap",
+      "group": "error",
+      "zone": "rr.Example. 73 IN TYPE47 \\# 2 0000\n",
+      "error": true,
+      "records": []
+    },
+    {
+      "name": "generic_nsec_empty_bitmap",
+      "group": "error",
+      "zone": "rr.Example. 73 IN TYPE47 \\# 3 000000\n",
+      "error": true,
+      "records": []
+    },
+    {
+      "name": "generic_nsec_long_bitmap",
+      "group": "error",
+      "zone": "rr.Example. 73 IN TYPE47 \\# 3 000021\n",
+      "error": true,
+      "records": []
+    },
+    {
+      "name": "generic_svcb_reserved_wire_key",
+      "group": "error",
+      "zone": "rr.Example. 73 IN TYPE64 \\# 7 000100ffff0000\n",
+      "error": true,
+      "records": []
+    },
+    {
+      "name": "generic_svcb_bad_alpn_wire",
+      "group": "error",
+      "zone": "rr.Example. 73 IN TYPE64 \\# 9 000100000100020568\n",
+      "error": true,
+      "records": []
+    },
+    {
+      "name": "generic_svcb_short_option_header",
+      "group": "error",
+      "zone": "rr.Example. 73 IN TYPE64 \\# 5 0001000001\n",
+      "error": true,
+      "records": []
+    },
+    {
+      "name": "generic_tkey_short_inception",
+      "group": "error",
+      "zone": "rr.Example. 73 IN TYPE249 \\# 2 0000\n",
+      "error": true,
+      "records": []
+    },
+    {
+      "name": "generic_tsig_short_signedtime",
+      "group": "error",
+      "zone": "rr.Example. 73 IN TYPE250 \\# 2 0000\n",
+      "error": true,
+      "records": []
+    },
+    {
+      "name": "generic_ds_at_field_boundary",
+      "group": "rfc3597",
+      "zone": "rr.Example. 73 IN TYPE43 \\# 2 007b\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 43,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "007b0000"
+        }
+      ]
+    },
+    {
+      "name": "generic_key_at_field_boundary",
+      "group": "rfc3597",
+      "zone": "rr.Example. 73 IN TYPE48 \\# 2 0101\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 48,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "01010000"
+        }
+      ]
+    },
+    {
+      "name": "generic_rrsig_at_field_boundary",
+      "group": "rfc3597",
+      "zone": "rr.Example. 73 IN TYPE46 \\# 3 000108\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 46,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "000108000000000000000000000000000000"
+        }
+      ]
+    },
+    {
+      "name": "generic_a_trailing_octet_discarded",
+      "group": "rfc3597",
+      "zone": "rr.Example. 73 IN TYPE1 \\# 5 c000020100\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 1,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "c0000201"
+        }
+      ]
+    },
+    {
+      "name": "generic_rp_compressed_names_expand",
+      "group": "rfc3597",
+      "zone": "rr.Example. 73 IN TYPE17 \\# 13 016d074578616d706c6500c000\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 17,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "016d074578616d706c6500016d074578616d706c6500"
+        }
+      ]
+    },
+    {
+      "name": "generic_nsec_bitmap_trailing_zero_trimmed",
+      "group": "rfc3597",
+      "zone": "rr.Example. 73 IN TYPE47 \\# 5 0000024000\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 47,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "00000140"
+        }
+      ]
+    },
+    {
+      "name": "generic_nsec_zero_bitmap_omitted",
+      "group": "rfc3597",
+      "zone": "rr.Example. 73 IN TYPE47 \\# 4 00000100\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 47,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "00"
+        }
+      ]
+    },
+    {
+      "name": "generic_svcb_mandatory_sorted",
+      "group": "rfc3597",
+      "zone": "rr.Example. 73 IN TYPE64 \\# 11 0001000000000400030001\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 64,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "0001000000000400010003"
+        }
+      ]
+    },
+    {
+      "name": "generic_tsig_generic",
+      "group": "rfc3597",
+      "zone": "rr.Example. 73 IN TYPE250 \\# 29 0b686d61632d73686132353600000000000001012c0000007b00000000\n",
+      "error": false,
+      "records": [
+        {
+          "owner": "rr.Example.",
+          "owner_wire": "027272074578616d706c6500",
+          "type": 250,
+          "class": 1,
+          "ttl": 73,
+          "rdata": "0b686d61632d73686132353600000000000001012c0000007b00000000"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "format_version": 1,
+  "prefix": "mosdns_cache_",
+  "label_names": ["tag"],
+  "tags": [
+    {"raw": "cached\"one\\path\nline", "escaped": "cached\\\"one\\\\path\\nline"},
+    {"raw": "cached_two", "escaped": "cached_two"}
+  ],
+  "metrics": [
+    {"name": "query_total", "kind": "counter", "help": "The total number of processed queries"},
+    {"name": "hit_total", "kind": "counter", "help": "The total number of queries that hit the cache"},
+    {"name": "lazy_hit_total", "kind": "counter", "help": "The total number of queries that hit the expired cache"},
+    {"name": "size_current", "kind": "gauge", "help": "Current cache size in records"}
+  ]
+}

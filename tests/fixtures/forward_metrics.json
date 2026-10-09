@@ -1,0 +1,55 @@
+{
+  "format_version": 1,
+  "prefix": "mosdns_forward_",
+  "tag": "fixture",
+  "upstream": "primary",
+  "label_names": [
+    "tag",
+    "upstream"
+  ],
+  "latency_bounds": [
+    1,
+    5,
+    10,
+    20,
+    50,
+    100,
+    200,
+    500,
+    1000,
+    2000,
+    5000
+  ],
+  "metrics": [
+    {
+      "name": "query_total",
+      "kind": "counter",
+      "help": "The total number of queries processed by this upstream"
+    },
+    {
+      "name": "err_total",
+      "kind": "counter",
+      "help": "The total number of queries failed"
+    },
+    {
+      "name": "thread",
+      "kind": "gauge",
+      "help": "The number of threads (queries) that are currently being processed"
+    },
+    {
+      "name": "response_latency_millisecond",
+      "kind": "histogram",
+      "help": "The response latency in millisecond"
+    },
+    {
+      "name": "conn_opened_total",
+      "kind": "counter",
+      "help": "The total number of connections that are opened"
+    },
+    {
+      "name": "conn_closed_total",
+      "kind": "counter",
+      "help": "The total number of connections that are closed"
+    }
+  ]
+}

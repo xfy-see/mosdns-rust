@@ -1,0 +1,6 @@
+[
+  {"method":"GET","url":"/plugins/echo/value?value=hello%20world","body":"","status":200,"response":"GET|/plugins/echo/value|hello world|"},
+  {"method":"POST","url":"/plugins/echo/value?value=posted","body":"fixture body","status":200,"response":"POST|/plugins/echo/value|posted|fixture body"},
+  {"method":"GET","url":"/plugins/echo2/value","body":"","status":404},
+  {"method":"DELETE","url":"/plugins/echo/value","body":"","status":405}
+]

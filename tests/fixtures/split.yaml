@@ -1,0 +1,72 @@
+# Copyright (C) 2020-2022, IrineSistiana
+# SPDX-License-Identifier: GPL-3.0-or-later
+# Deterministic mock upstreams for the same site-first / response-IP policy used
+# by router benchmarks. Each answer TTL identifies the selected mock branch.
+log:
+  level: error
+plugins:
+  - tag: cn_site
+    type: domain_set
+    args:
+      exps: ["domain:cn", "full:direct-domestic.test"]
+  - tag: cn_ip
+    type: ip_set
+    args:
+      ips: ["1.0.1.0/24", "2400:3200::/32"]
+  - tag: cached
+    type: cache
+    args:
+      size: 64
+  - tag: domestic
+    type: sequence
+    args:
+      - matches: ["qname full:foreign-answer.cn"]
+        exec: black_hole 203.0.113.19 2001:db8:ffff::19
+      - matches: ["has_resp"]
+        exec: ttl 111
+      - matches: ["has_resp"]
+        exec: return
+      - matches: ["qname full:unknown-cn.test"]
+        exec: black_hole 1.0.1.9 2400:3200::9
+      - matches: ["has_resp"]
+        exec: ttl 111
+      - matches: ["has_resp"]
+        exec: return
+      - matches: ["qname $cn_site"]
+        exec: black_hole 1.0.1.9 2400:3200::9
+      - matches: ["has_resp"]
+        exec: ttl 111
+      - matches: ["has_resp"]
+        exec: return
+      - exec: black_hole 203.0.113.19 2001:db8:ffff::19
+      - exec: ttl 111
+  - tag: foreign
+    type: sequence
+    args:
+      - exec: black_hole 203.0.113.9 2001:db8:ffff::9
+      - exec: ttl 333
+      - matches: ["has_resp"]
+        exec: accept
+      - exec: reject 5
+  - tag: main
+    type: sequence
+    args:
+      - matches: ["_true", "_false"]
+        exec: reject 2
+      - matches: ["! qclass 1"]
+        exec: reject 5
+      - exec: $cached
+      - matches: ["has_resp"]
+        exec: accept
+      - matches: ["qname full:refused.test"]
+        exec: reject 5
+      - matches: ["qname full:nxdomain.test"]
+        exec: reject 3
+      - matches: ["qname full:blocked.cn", "! qtype 28"]
+        exec: reject 5
+      - matches: ["qname $cn_site", "qtype 1 28"]
+        exec: goto domestic
+      - exec: jump domestic
+      - matches: ["resp_ip $cn_ip", "rcode 0"]
+        exec: accept
+      - exec: goto foreign
